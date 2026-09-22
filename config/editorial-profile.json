@@ -1,0 +1,120 @@
+{
+  "schemaVersion": 3,
+  "name": "AI Frontier",
+  "researchTopics": [
+    {
+      "id": "vla",
+      "name": "VLA",
+      "enabled": true,
+      "priority": "P0",
+      "weight": 1.8,
+      "keywords": [
+        "VLA",
+        "vision-language-action",
+        "memory"
+      ],
+      "aliases": [
+        "vision language action",
+        "robotic foundation model",
+        "visuomotor"
+      ],
+      "excludeKeywords": []
+    },
+    {
+      "id": "agent",
+      "name": "Agent",
+      "enabled": true,
+      "priority": "P0",
+      "weight": 1.2,
+      "keywords": [
+        "agent",
+        "agentic",
+        "multi-agent"
+      ],
+      "aliases": [
+        "tool use",
+        "computer use",
+        "autonomous research"
+      ],
+      "excludeKeywords": [
+        "air combat",
+        "eye clinic"
+      ]
+    },
+    {
+      "id": "world-model",
+      "name": "World Model",
+      "enabled": true,
+      "priority": "P0",
+      "weight": 1,
+      "keywords": [
+        "world model",
+        "world models"
+      ],
+      "aliases": [
+        "latent dynamics",
+        "video world model",
+        "predictive world"
+      ],
+      "excludeKeywords": []
+    },
+    {
+      "id": "embodied",
+      "name": "具身智能",
+      "enabled": true,
+      "priority": "P1",
+      "weight": 0.8,
+      "keywords": [
+        "具身智能",
+        "embodied"
+      ],
+      "aliases": [
+        "robot learning",
+        "robot policy",
+        "机器人学习"
+      ],
+      "excludeKeywords": []
+    }
+  ],
+  "papers": {
+    "minimumScore": 52,
+    "dailyMaximum": 20,
+    "historyDays": 14,
+    "arxivMaximum": 6,
+    "requireAbstract": true
+  },
+  "sourceOverrides": {},
+  "daily": {
+    "editorCandidates": {
+      "tech": 25,
+      "finance": 20,
+      "politics": 15
+    },
+    "webMaximum": 200
+  },
+  "notifications": {
+    "feishu": {
+      "tech": 5,
+      "finance": 3,
+      "politics": 3
+    },
+    "pushplus": {
+      "tech": 5,
+      "finance": 5,
+      "politics": 3
+    },
+    "overview": true,
+    "market": true
+  },
+  "weekly": {
+    "enabled": false,
+    "weekday": 0,
+    "requireCompleteDays": 7,
+    "reviewMinimumScore": 85
+  },
+  "models": {
+    "workerConcurrency": 3,
+    "editorTimeout": 300,
+    "reviewerThreshold": 80
+  }
+}

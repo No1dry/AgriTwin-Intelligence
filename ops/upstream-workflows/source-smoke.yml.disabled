@@ -1,0 +1,54 @@
+name: Source Smoke Check
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: Fetch sources without LLM or notifications
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    services:
+      rsshub:
+        image: diygod/rsshub:chromium-bundled
+        ports:
+          - 1200:1200
+        env:
+          NODE_ENV: production
+          CACHE_EXPIRE: 3600
+          BILIBILI_COOKIE_0: ${{ secrets.BILIBILI_COOKIE_0 }}
+        options: >-
+          --health-cmd "curl -f http://localhost:1200/healthz"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 8
+          --health-start-period 15s
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check embedded RSSHub
+        run: curl --fail --retry 5 --retry-delay 2 http://127.0.0.1:1200/healthz
+
+      - name: Fetch all sources
+        env:
+          X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
+          GIT_SOURCE_TOKEN: ${{ secrets.GIT_SOURCE_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RSSHUB_BASE_URL: http://127.0.0.1:1200
+          SOURCE_FETCH_CONCURRENCY: '6'
+          REPORT_LOCALE: zh
+        run: npm run dry-run

@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "supportedConfigPaths": [
+    "name",
+    "researchTopics",
+    "papers",
+    "sourceOverrides",
+    "daily",
+    "notifications",
+    "models.editorTimeout",
+    "models.workerConcurrency",
+    "models.reviewerThreshold"
+  ],
+  "workflows": { "generate": "daily.yml", "notify": "push-feishu-once.yml" },
+  "notes": {
+    "weekly": "Weekly generation is not implemented",
+    "multiAgent": "DeepSeek worker/reviewer roles activate when DEEPSEEK_API_KEY is configured; Kimi remains editor"
+  }
+}

@@ -1,0 +1,307 @@
+name: Daily Brief
+
+# Generate a fresh daily report and publish to GitHub Pages.
+#
+# One-time setup for forkers (see README → "Run on GitHub Actions"):
+#   1. Settings → Actions → General → enable workflows (forked repos start disabled)
+#   2. Settings → Pages → Build & deployment → Source: "Deploy from a branch" → gh-pages / root
+#   3. Settings → Secrets and variables → Actions:
+#        - Secrets: ANTHROPIC_API_KEY (or OPENAI / DEEPSEEK / MINIMAX / ZHIPU as you prefer)
+#        - Variables (all optional, sensible defaults provided):
+#            LLM_BACKEND     anthropic | openai | deepseek | minimax | zhipu    (default: anthropic)
+#            LLM_MODEL       e.g. claude-sonnet-4-6 / gpt-4o-mini       (backend default if unset)
+#            REPORT_LOCALE   zh | en                                    (default: zh)
+#            REPORT_TZ       IANA tz, e.g. Asia/Shanghai / UTC          (default: UTC in CI)
+#            REPORT_HOUR     trigger hour(s) in REPORT_TZ, comma-list   (default: 8 — 08:00)
+#                            examples: "8" / "8,18" / "0,6,12,18"
+#            REPORT_DAYS     day-of-week filter (cron-style 0-6 SUN=0)  (default: * — every day)
+#                            examples: "*" / "1-5" (weekdays) / "1,3,5" (MWF)
+#   4. Trigger once manually from Actions tab to seed gh-pages.
+#
+# After first successful run your report is live at:
+#   https://<your-username>.github.io/<repo-name>/
+#
+# Schedule mechanics: GitHub Actions cron is UTC-only. Beijing stays at UTC+8,
+# so one cron at 00:00 UTC targets 08:00 Beijing time. The gate remains as a
+# safety check, while the single daily cron prevents duplicate builds.
+
+on:
+  schedule:
+    # 00:00 UTC = 08:00 Asia/Shanghai.
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write  # needed to push to gh-pages branch
+
+concurrency:
+  group: daily-brief
+  cancel-in-progress: false
+
+jobs:
+  gate:
+    name: Time gate
+    runs-on: ubuntu-latest
+    outputs:
+      should-run: ${{ steps.check.outputs.should-run }}
+    steps:
+      - name: Check schedule
+        id: check
+        env:
+          REPORT_TZ: ${{ vars.REPORT_TZ }}
+          REPORT_HOUR: ${{ vars.REPORT_HOUR }}
+          REPORT_DAYS: ${{ vars.REPORT_DAYS }}
+          EVENT_NAME: ${{ github.event_name }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PAGES_REPOSITORY: ${{ vars.PAGES_REPOSITORY }}
+        run: |
+          set -euo pipefail
+
+          # Manual triggers always run — user clicked Run workflow.
+          if [ "$EVENT_NAME" = "workflow_dispatch" ]; then
+            echo "Manual trigger — bypassing time gate"
+            echo "should-run=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          TZ_VAL="${REPORT_TZ:-UTC}"
+          HOURS_VAL="${REPORT_HOUR:-8}"
+          DAYS_VAL="${REPORT_DAYS:-*}"
+
+          NOW_HOUR=$(TZ="$TZ_VAL" date +%-H)
+          NOW_DOW=$(TZ="$TZ_VAL" date +%w)
+          NOW_PRINT=$(TZ="$TZ_VAL" date '+%Y-%m-%d %H:%M %Z')
+
+          echo "Now in $TZ_VAL: $NOW_PRINT (hour=$NOW_HOUR, dow=$NOW_DOW)"
+          echo "Configured REPORT_HOUR='$HOURS_VAL', REPORT_DAYS='$DAYS_VAL'"
+
+          # Hour match: comma-separated list of integers (0-23).
+          hour_match=false
+          IFS=',' read -ra HLIST <<< "$HOURS_VAL"
+          for h in "${HLIST[@]}"; do
+            h_trim="${h// /}"
+            if [ "$NOW_HOUR" = "$h_trim" ]; then
+              hour_match=true
+              break
+            fi
+          done
+
+          # Day-of-week match: '*', single digits, ranges "a-b", or comma combos.
+          day_match=false
+          if [ "$DAYS_VAL" = "*" ]; then
+            day_match=true
+          else
+            IFS=',' read -ra DLIST <<< "$DAYS_VAL"
+            for d in "${DLIST[@]}"; do
+              d_trim="${d// /}"
+              if [[ "$d_trim" == *-* ]]; then
+                start="${d_trim%-*}"
+                end="${d_trim#*-}"
+                if [ "$NOW_DOW" -ge "$start" ] && [ "$NOW_DOW" -le "$end" ]; then
+                  day_match=true
+                  break
+                fi
+              else
+                if [ "$NOW_DOW" = "$d_trim" ]; then
+                  day_match=true
+                  break
+                fi
+              fi
+            done
+          fi
+
+          # Catchup branch — covers GitHub Actions silently dropping scheduled
+          # triggers (which happens to ~30% of cron runs, especially at the
+          # exact target hour). Fires when:
+          #   1. day matches AND
+          #   2. exact hour didn't match AND
+          #   3. we're past today's earliest REPORT_HOUR AND
+          #   4. today's report doesn't yet exist on gh-pages
+          # Once today's report is published, this branch self-suppresses on
+          # subsequent gate runs — no double-builds per day.
+          catchup_match=false
+          if [ "$day_match" = "true" ] && [ "$hour_match" = "false" ]; then
+            earliest_hour=99
+            for h in "${HLIST[@]}"; do
+              h_trim="${h// /}"
+              if [ "$h_trim" -lt "$earliest_hour" ]; then
+                earliest_hour=$h_trim
+              fi
+            done
+            # Tolerate 1h early: if BJ 07:XX is the only trigger before BJ
+            # 08:00 gets swallowed, we'd rather fire slightly early than
+            # not at all. earliest_hour=0 edge case: don't go negative.
+            catchup_threshold=$earliest_hour
+            if [ "$earliest_hour" -gt 0 ]; then
+              catchup_threshold=$((earliest_hour - 1))
+            fi
+            if [ "$NOW_HOUR" -ge "$catchup_threshold" ]; then
+              TODAY=$(TZ="$TZ_VAL" date +%Y-%m-%d)
+              # Reports are published to PAGES_REPOSITORY (separate public site
+              # repo) when set, so the "does today's report exist?" probe must
+              # target that repo — otherwise it 404s forever and triggers a
+              # duplicate build every gate run.
+              CHECK_REPO="${PAGES_REPOSITORY:-$GITHUB_REPOSITORY}"
+              CHECK_URL="https://api.github.com/repos/${CHECK_REPO}/contents/${TODAY}/${TODAY}.html?ref=gh-pages"
+              HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" \
+                -H "Authorization: Bearer ${GH_TOKEN}" \
+                -H "Accept: application/vnd.github+json" \
+                -H "X-GitHub-Api-Version: 2022-11-28" \
+                "$CHECK_URL" || echo "000")
+              if [ "$HTTP_CODE" = "404" ]; then
+                echo "↻ Catchup: today's report ($TODAY) missing from gh-pages — recovering"
+                catchup_match=true
+              else
+                echo "Catchup check: today's report exists (HTTP $HTTP_CODE) — no action"
+              fi
+            fi
+          fi
+
+          if [ "$hour_match" = "true" ] && [ "$day_match" = "true" ]; then
+            echo "✓ Match — proceeding to build"
+            echo "should-run=true" >> "$GITHUB_OUTPUT"
+          elif [ "$catchup_match" = "true" ]; then
+            echo "✓ Catchup — proceeding to build"
+            echo "should-run=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "✗ No match — skipping (hour=$hour_match day=$day_match catchup=$catchup_match)"
+            echo "should-run=false" >> "$GITHUB_OUTPUT"
+          fi
+
+  build:
+    name: Build & publish
+    needs: gate
+    if: needs.gate.outputs.should-run == 'true'
+    runs-on: ubuntu-latest
+    services:
+      rsshub:
+        image: diygod/rsshub:chromium-bundled
+        ports:
+          - 1200:1200
+        env:
+          NODE_ENV: production
+          CACHE_EXPIRE: 3600
+          # One logged-in account cookie is enough for every subscribed UP.
+          # A single key also prevents RSSHub from randomly selecting an
+          # unset cookie when several BILIBILI_COOKIE_* variables exist.
+          BILIBILI_COOKIE_0: ${{ secrets.BILIBILI_COOKIE_0 }}
+        options: >-
+          --health-cmd "curl -f http://localhost:1200/healthz"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 8
+          --health-start-period 15s
+    # Source fetching and per-article LLM enrichment can occasionally take
+    # longer than 25 minutes; allow the daily run enough time to finish.
+    timeout-minutes: 60
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check embedded RSSHub
+        run: curl --fail --retry 5 --retry-delay 2 http://127.0.0.1:1200/healthz
+
+      # Bring previous reports into the workspace so they survive each run
+      # and so build-site can list them all in the archive.
+      - name: Restore existing reports from published site
+        env:
+          PAGES_REPOSITORY: ${{ vars.PAGES_REPOSITORY }}
+        run: |
+          mkdir -p daily_reports
+          SITE="${PAGES_REPOSITORY:-}"
+          if [ -z "$SITE" ]; then
+            echo "PAGES_REPOSITORY unset — skipping restore (single-repo mode)"
+          elif git ls-remote --exit-code --heads "https://github.com/$SITE.git" gh-pages >/dev/null 2>&1; then
+            # Public site repo → anonymous clone of its gh-pages is fine.
+            git clone --quiet --depth=1 --branch gh-pages "https://github.com/$SITE.git" _prev_site
+            cp -r _prev_site/20* daily_reports/ 2>/dev/null || true
+            rm -rf _prev_site
+            echo "Restored $(ls -1d daily_reports/20*/ 2>/dev/null | wc -l) prior report dirs from $SITE"
+          else
+            echo "$SITE has no gh-pages yet — first run"
+          fi
+
+      - name: Generate today's report
+        env:
+          LLM_BACKEND: ${{ vars.LLM_BACKEND || 'anthropic' }}
+          LLM_MODEL: ${{ vars.LLM_MODEL }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          MINIMAX_API_KEY: ${{ secrets.MINIMAX_API_KEY }}
+          ZHIPU_API_KEY: ${{ secrets.ZHIPU_API_KEY }}
+          # Optional proxy / self-hosted endpoints — forward whatever the
+          # forker set in Settings → Variables. Empty values are a no-op
+          # (backends fall back to the official URL in code).
+          ANTHROPIC_BASE_URL: ${{ vars.ANTHROPIC_BASE_URL }}
+          OPENAI_BASE_URL: ${{ vars.OPENAI_BASE_URL }}
+          DEEPSEEK_BASE_URL: ${{ vars.DEEPSEEK_BASE_URL }}
+          MINIMAX_BASE_URL: ${{ vars.MINIMAX_BASE_URL }}
+          ZHIPU_BASE_URL: ${{ vars.ZHIPU_BASE_URL }}
+          # Generic aliases — handy when pointing at an OpenAI/Anthropic
+          # compatible service that isn't one of the named presets (Moonshot,
+          # SiliconFlow, OpenRouter, self-hosted, ...). Provider-specific
+          # vars above take precedence when both are set.
+          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+          LLM_BASE_URL: ${{ vars.LLM_BASE_URL }}
+          REPORT_LOCALE: ${{ vars.REPORT_LOCALE || 'zh' }}
+          REPORT_TZ: ${{ vars.REPORT_TZ }}
+          WEB_MODE: 'true'
+          X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
+          GIT_SOURCE_TOKEN: ${{ secrets.GIT_SOURCE_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RSSHUB_BASE_URL: http://127.0.0.1:1200
+          SOURCE_FETCH_CONCURRENCY: ${{ vars.SOURCE_FETCH_CONCURRENCY || '6' }}
+        run: npm run daily
+
+      - name: Build static site (index + archive)
+        run: npm run build-site
+
+      - name: Publish to public site repo
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          # Cross-repo publish: code stays in this (private) repo; only the
+          # rendered HTML is pushed to the separate public PAGES_REPOSITORY,
+          # authenticated by the write-scoped SSH deploy key.
+          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          external_repository: ${{ vars.PAGES_REPOSITORY }}
+          publish_dir: ./daily_reports
+          publish_branch: gh-pages
+          keep_files: false  # we restored everything above, so a clean publish is fine
+          commit_message: 'daily: report for ${{ github.run_id }}'
+
+      # Push the digest to Feishu/Lark AFTER publish so the card's
+      # "查看完整网页版" button links to an already-live page. No-op if the
+      # FEISHU_* vars/secrets aren't configured (scripts/notify-feishu.mjs
+      # self-skips), so non-Feishu forks are unaffected.
+      - name: Push to Feishu
+        continue-on-error: true  # a notification hiccup shouldn't fail the build (report is already published)
+        env:
+          FEISHU_APP_ID: ${{ vars.FEISHU_APP_ID }}
+          FEISHU_APP_SECRET: ${{ secrets.FEISHU_APP_SECRET }}
+          FEISHU_CHAT_ID: ${{ vars.FEISHU_CHAT_ID }}
+          FEISHU_BASE_URL: ${{ vars.FEISHU_BASE_URL }}
+          FEISHU_RECEIVE_ID_TYPE: ${{ vars.FEISHU_RECEIVE_ID_TYPE }}
+          FEISHU_REPORT_URL: ${{ vars.FEISHU_REPORT_URL }}
+          REPORT_TZ: ${{ vars.REPORT_TZ }}
+        run: npm run notify
+
+      # Push to WeChat via PushPlus. No-op if PUSHPLUS_TOKEN is unset.
+      - name: Push to WeChat (PushPlus)
+        continue-on-error: true  # a notification hiccup shouldn't fail the build (report is already published)
+        env:
+          PUSHPLUS_TOKEN: ${{ secrets.PUSHPLUS_TOKEN }}
+          PUSHPLUS_TOPIC: ${{ vars.PUSHPLUS_TOPIC }}
+          PUSHPLUS_REPORT_URL: ${{ vars.PUSHPLUS_REPORT_URL }}
+          FEISHU_REPORT_URL: ${{ vars.FEISHU_REPORT_URL }}
+          REPORT_TZ: ${{ vars.REPORT_TZ }}
+        run: npm run notify-pushplus
