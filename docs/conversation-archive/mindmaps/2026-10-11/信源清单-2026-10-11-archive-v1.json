@@ -1,0 +1,733 @@
+{
+  "compiledOn": "2026-10-11",
+  "evidenceCutoff": "2026-10-04",
+  "externalSourceGroups": 16,
+  "registeredExternalGroups": 12,
+  "internalSourceGroups": 8,
+  "priorityMeaning": {
+    "P0": "核心先接：形成针对本场的日报必须具备；先用合成快照验证，再做小规模真实接入。",
+    "P1": "第二批完善：补齐省级/国家技术政策、论文周报、知识与天气背景；不阻塞首个小闭环。",
+    "P2": "按需扩展：专业研发、国际背景或重复补充渠道；依据本场需求和预算启用。"
+  },
+  "sources": [
+    {
+      "id": "hubei-fisheries-extension",
+      "name": "湖北省农业事业发展中心（水产技术资料）",
+      "priority": "P0",
+      "priorityReason": "本省水产相关性高，已有有限实抓基础",
+      "category": "reference",
+      "purpose": "池塘与稻渔防汛、养殖技术和灾后核实",
+      "accessMethod": "复用official-agriculture采集器；读取栏目列表与HTML详情，保存正文版本及出处",
+      "frequency": "每日1次；汛期提高频率前先验证",
+      "status": "2026-10-04有限实抓：每源2篇；fetch_verified/available；不代表持续可用或专业审核",
+      "statusLabel": "有限实抓",
+      "credentials": "公开页面无需账号；自动访问及再分发条件须按站点核对",
+      "limitations": "按真实批次和养殖模式匹配；原发布者按网页字段保留；图片未转录、附件未解析",
+      "nextStep": "扩充文章、改版与超时样例；核对许可并建立增量日程",
+      "entryUrls": [
+        {
+          "label": "当前登记入口",
+          "url": "https://hbnysy.hubei.gov.cn/bmdt/ywdt/"
+        },
+        {
+          "label": "原调研/官方说明",
+          "url": "https://hbnysy.hubei.gov.cn/zfxxgk/zc/qtzdgkwj/202607/t20260710_5974033.shtml"
+        }
+      ],
+      "evidenceFile": [
+        "research/agriculture-source-discovery-2026-10-04.md",
+        "development/AgriTwin-Intelligence/config/sources.agriculture.json",
+        "plans/第9步执行结果.md"
+      ],
+      "scope": "external",
+      "scopeLabel": "外部资料",
+      "group": "official"
+    },
+    {
+      "id": "ezhou-agriculture",
+      "name": "鄂州市农业农村局",
+      "priority": "P0",
+      "priorityReason": "本地农情与政策最相关，已有有限实抓基础",
+      "category": "reference",
+      "purpose": "鄂州/梁子湖种植、水产防灾、农业通知与政策线索",
+      "accessMethod": "复用official-agriculture，当前固定入口为通知公告；工作动态是补充调研入口",
+      "frequency": "每日1次；特殊农时按需求调整",
+      "status": "2026-10-04有限实抓：每源2篇；fetch_verified/available；不代表持续可用或专业审核",
+      "statusLabel": "有限实抓",
+      "credentials": "公开页面无需账号；自动访问及再分发条件须按站点核对",
+      "limitations": "行政宣传与技术资料分开；同一省级文件的转载不能重复作为证据",
+      "nextStep": "扩充本地技术与政策样本，建立原始发布者与转载去重",
+      "entryUrls": [
+        {
+          "label": "当前登记入口",
+          "url": "https://nyj.ezhou.gov.cn/xwzx/tzgg/"
+        },
+        {
+          "label": "原调研/官方说明",
+          "url": "https://nyj.ezhou.gov.cn/xwzx/gzdt/"
+        }
+      ],
+      "evidenceFile": [
+        "research/agriculture-source-discovery-2026-10-04.md",
+        "development/AgriTwin-Intelligence/config/sources.agriculture.json",
+        "plans/第9步执行结果.md"
+      ],
+      "scope": "external",
+      "scopeLabel": "外部资料",
+      "group": "official"
+    },
+    {
+      "id": "hubei-agriculture",
+      "name": "湖北省农业农村厅",
+      "priority": "P1",
+      "priorityReason": "补齐省级农技、主推技术与政策覆盖",
+      "category": "reference",
+      "purpose": "已确认作物的农时、防灾、技术指导和省级通知",
+      "accessMethod": "公开HTML列表与详情；PDF作为独立附件解析任务；入口从官方导航确认",
+      "frequency": "每日1次",
+      "status": "2026-10-04官方文档/网页调研；registered/unavailable；尚未实现并验证真实来源采集；现阶段仅登记官方入口与适用范围，离线解析不代表抓取成功。",
+      "statusLabel": "待接入",
+      "credentials": "公开页面无需账号；自动访问及再分发条件须按站点核对",
+      "limitations": "未验证公开RSS/API；生育阶段与本场品种必须匹配",
+      "nextStep": "实现限定栏目采集、正文/附件解析及异常样例",
+      "entryUrls": [
+        {
+          "label": "当前登记入口",
+          "url": "https://nyt.hubei.gov.cn/bmdt/"
+        }
+      ],
+      "evidenceFile": [
+        "research/agriculture-source-discovery-2026-10-04.md",
+        "development/AgriTwin-Intelligence/config/sources.agriculture.json",
+        "plans/第9步执行结果.md"
+      ],
+      "scope": "external",
+      "scopeLabel": "外部资料",
+      "group": "official"
+    },
+    {
+      "id": "qweather-weather-alerts",
+      "name": "和风天气（日预报与天气预警）",
+      "priority": "P0",
+      "priorityReason": "农场日报和区域天气关注的必要上下文",
+      "category": "weather",
+      "purpose": "按农场位置读取日预报和有效天气预警",
+      "accessMethod": "日预报复用平台既有适配；天气预警新增正式API适配，独立阶段先用fixture",
+      "frequency": "预警建议15分钟；日预报沿用平台调度，受配额和更新周期约束",
+      "status": "2026-10-04官方文档/网页调研；registered/unavailable；尚未配置天气账户、专用API Host和对象坐标，weatheralert适配器未实现；此URL为官方协议说明，不是已接通的预警端点。",
+      "statusLabel": "待接入",
+      "credentials": "需专用API Host与服务端JWT配置；账号产品权限、配额、费用未验收",
+      "limitations": "区域气温不等于塘口水温；保留有效期、更新/取消与归因；失败不能解释成无预警",
+      "nextStep": "确认账号、专用Host和对象位置；分别验收日预报与预警子通道",
+      "entryUrls": [
+        {
+          "label": "当前登记入口",
+          "url": "https://dev.qweather.com/docs/api/warning/weather-alert/"
+        },
+        {
+          "label": "日预报文档入口",
+          "url": "https://dev.qweather.com/docs/api/weather/"
+        }
+      ],
+      "evidenceFile": [
+        "research/agriculture-source-discovery-2026-10-04.md",
+        "development/AgriTwin-Intelligence/config/sources.agriculture.json",
+        "plans/第9步执行结果.md"
+      ],
+      "scope": "external",
+      "scopeLabel": "外部资料",
+      "group": "weather",
+      "channels": [
+        "日预报：复用梁子湖平台 readDaily() 与 /weather/v1/daily/{latitude}/{longitude}；已有适配代码，账号、线上响应和与AgriTwin的桥接未验收。",
+        "预警：新增 /weatheralert/v1/current/{latitude}/{longitude} 适配；保留 alert/update/cancel、supersedes、有效期和来源归因。当前农业目录登记的是预警组，不能称日预报已接入本引擎。"
+      ]
+    },
+    {
+      "id": "nmc-agrometeorology",
+      "name": "中央气象台农业气象",
+      "priority": "P1",
+      "priorityReason": "补充专业农业气象与区域灾害背景",
+      "category": "weather",
+      "purpose": "农业气象周报、墒情、干旱监测和湖北区域农事背景",
+      "accessMethod": "公开图文栏目；优先解析可追溯正文；图像信息先人工核实",
+      "frequency": "每日1次；周报按版本变化处理",
+      "status": "2026-10-04官方文档/网页调研；registered/unavailable；尚未实现并验证真实来源采集；现阶段仅登记官方入口与适用范围，离线解析不代表抓取成功。",
+      "statusLabel": "待接入",
+      "credentials": "公开页面无需账号；自动访问及再分发条件须按站点核对",
+      "limitations": "未验证稳定结构化API；区域图不能判定某田已受灾",
+      "nextStep": "固定可抽取产品，保存地理范围、发布时间及图文限制",
+      "entryUrls": [
+        {
+          "label": "当前登记入口",
+          "url": "https://www.nmc.cn/publish/agro/disastersmonitoring/Agricultural_Drought_Monitoring.htm"
+        }
+      ],
+      "evidenceFile": [
+        "research/agriculture-source-discovery-2026-10-04.md",
+        "development/AgriTwin-Intelligence/config/sources.agriculture.json",
+        "plans/第9步执行结果.md"
+      ],
+      "scope": "external",
+      "scopeLabel": "外部资料",
+      "group": "weather"
+    },
+    {
+      "id": "natesc-crop-guidance",
+      "name": "全国农业技术推广服务中心",
+      "priority": "P1",
+      "priorityReason": "国家级作物病虫与农技参考",
+      "category": "reference",
+      "purpose": "种植作物病虫趋势、墒情、施肥与技术指导",
+      "accessMethod": "先人工精选已核实文件；稳定栏目和HTML正文解析另行验证",
+      "frequency": "建议每日1次，当前尚未启用",
+      "status": "2026-10-04官方文档/网页调研；registered/unavailable；官方入口已登记，但访问稳定性和正文提取尚未验证；不将失败解释为没有农情。",
+      "statusLabel": "待接入",
+      "credentials": "公开页面无需账号；自动访问及再分发条件须按站点核对",
+      "limitations": "入口曾访问失败；全国趋势不代表本田确诊；不是水生动物疫病源",
+      "nextStep": "先验证访问与正文，准备5–10份基础资料及失败样例",
+      "entryUrls": [
+        {
+          "label": "当前登记入口",
+          "url": "https://www.natesc.org.cn/Home/"
+        }
+      ],
+      "evidenceFile": [
+        "research/agriculture-source-discovery-2026-10-04.md",
+        "development/AgriTwin-Intelligence/config/sources.agriculture.json",
+        "plans/第9步执行结果.md"
+      ],
+      "scope": "external",
+      "scopeLabel": "外部资料",
+      "group": "official"
+    },
+    {
+      "id": "moa-fisheries-guidance",
+      "name": "农业农村部渔业渔政管理局",
+      "priority": "P1",
+      "priorityReason": "为水产防灾提供国家级基础资料",
+      "category": "reference",
+      "purpose": "按淡水池塘、稻渔等模式归类防灾及恢复技术",
+      "accessMethod": "HTML附件页+独立文件下载解析；先精选基础文档，再监测修订",
+      "frequency": "每周1次；年度版本复核",
+      "status": "2026-10-04官方文档/网页调研；registered/unavailable；尚未实现并验证真实来源采集；现阶段仅登记官方入口与适用范围，离线解析不代表抓取成功。",
+      "statusLabel": "待接入",
+      "credentials": "公开页面无需账号；自动访问及再分发条件须按站点核对",
+      "limitations": "已调研样例为2025版；须查替代关系；附件正文尚未采集验收",
+      "nextStep": "核实最新有效版本，解析附件并保存页码引用",
+      "entryUrls": [
+        {
+          "label": "当前登记入口",
+          "url": "https://yyj.moa.gov.cn/tzgg/202507/t20250725_6476015.htm"
+        }
+      ],
+      "evidenceFile": [
+        "research/agriculture-source-discovery-2026-10-04.md",
+        "development/AgriTwin-Intelligence/config/sources.agriculture.json",
+        "plans/第9步执行结果.md"
+      ],
+      "scope": "external",
+      "scopeLabel": "外部资料",
+      "group": "official"
+    },
+    {
+      "id": "hzau-fisheries-research",
+      "name": "华中农业大学水产学院",
+      "priority": "P2",
+      "priorityReason": "适合淡水养殖专题研发，非日报刚需",
+      "category": "research",
+      "purpose": "鱼类健康、尾水、种质和智能养殖研究线索",
+      "accessMethod": "科研服务HTML栏目；由校方报道追溯论文DOI、数据和代码",
+      "frequency": "每周2–3次",
+      "status": "2026-10-04官方文档/网页调研；registered/unavailable；尚未实现并验证真实来源采集；现阶段仅登记官方入口与适用范围，离线解析不代表抓取成功。",
+      "statusLabel": "待接入",
+      "credentials": "公开页面无需账号；自动访问及再分发条件须按站点核对",
+      "limitations": "成果报道不能直接转为本场操作措施；全文按论文许可获取",
+      "nextStep": "实现主题筛选、原始论文关联和每周精选",
+      "entryUrls": [
+        {
+          "label": "当前登记入口",
+          "url": "https://cf.hzau.edu.cn/kyfw.htm"
+        }
+      ],
+      "evidenceFile": [
+        "research/agriculture-source-discovery-2026-10-04.md",
+        "development/AgriTwin-Intelligence/config/sources.agriculture.json",
+        "plans/第9步执行结果.md"
+      ],
+      "scope": "external",
+      "scopeLabel": "外部资料",
+      "group": "research"
+    },
+    {
+      "id": "fao-integrated-aquaculture",
+      "name": "FAO稻渔与复合种养资料",
+      "priority": "P2",
+      "priorityReason": "长期复合种养背景知识，更新需求低",
+      "category": "reference",
+      "purpose": "稻渔与农渔复合系统的设计条件、收益与风险背景",
+      "accessMethod": "人工精选公开HTML/PDF资料，按文件和版本建索引",
+      "frequency": "首次精选后每月复核",
+      "status": "2026-10-04官方文档/网页调研；registered/unavailable；尚未实现并验证真实来源采集；现阶段仅登记官方入口与适用范围，离线解析不代表抓取成功。",
+      "statusLabel": "待接入",
+      "credentials": "公开页面无需账号；自动访问及再分发条件须按站点核对",
+      "limitations": "部分资料较旧且地区不同；不是每日资讯或湖北现场处方",
+      "nextStep": "精选适用章节，标记国家、年份、模式和文件许可",
+      "entryUrls": [
+        {
+          "label": "当前登记入口",
+          "url": "https://www.fao.org/4/a0823e/a0823e00.htm"
+        },
+        {
+          "label": "农渔复合系统资料",
+          "url": "https://www.fao.org/4/y1187e/y1187e00.htm"
+        }
+      ],
+      "evidenceFile": [
+        "research/agriculture-source-discovery-2026-10-04.md",
+        "development/AgriTwin-Intelligence/config/sources.agriculture.json",
+        "plans/第9步执行结果.md"
+      ],
+      "scope": "external",
+      "scopeLabel": "外部资料",
+      "group": "research"
+    },
+    {
+      "id": "arxiv-agriculture",
+      "name": "arXiv农业定向论文",
+      "priority": "P1",
+      "priorityReason": "满足农业技术论文周报与预印本发现",
+      "category": "research",
+      "purpose": "农业感知、遥感、数字孪生、水质预测与稻渔论文",
+      "accessMethod": "Atom查询API，采用农业主题检索；以arXiv ID/版本和DOI去重",
+      "frequency": "每日1次小批查询，按周汇总",
+      "status": "2026-10-04官方文档/网页调研；registered/unavailable；尚未实现并验证真实来源采集；现阶段仅登记官方入口与适用范围，离线解析不代表抓取成功。",
+      "statusLabel": "待接入",
+      "credentials": "公开元数据API无需密钥；请求需遵守官方API条款",
+      "limitations": "标明预印本；研究条件和外部验证范围单独记录；全文许可另核；10月11日复核：所有客户端合计单连接、请求间隔至少3秒；描述性元数据许可与论文全文许可分开。",
+      "nextStep": "实现分页、限速、主题误收检查，并与OpenAlex交叉去重",
+      "entryUrls": [
+        {
+          "label": "当前登记入口",
+          "url": "https://export.arxiv.org/api/query"
+        },
+        {
+          "label": "原调研/官方说明",
+          "url": "https://info.arxiv.org/help/api/user-manual.html"
+        },
+        {
+          "label": "API条款（10月11日复核）",
+          "url": "https://info.arxiv.org/help/api/tou.html"
+        }
+      ],
+      "evidenceFile": [
+        "research/agriculture-source-discovery-2026-10-04.md",
+        "development/AgriTwin-Intelligence/config/sources.agriculture.json",
+        "plans/第9步执行结果.md"
+      ],
+      "scope": "external",
+      "scopeLabel": "外部资料",
+      "group": "research"
+    },
+    {
+      "id": "openalex-agriculture",
+      "name": "OpenAlex农业定向研究",
+      "priority": "P1",
+      "priorityReason": "补齐农学期刊覆盖与论文元数据",
+      "category": "research",
+      "purpose": "论文DOI、作者机构、开放版本和引用关系",
+      "accessMethod": "GET https://api.openalex.org/works；结构化筛选并回溯原论文",
+      "frequency": "每日或每周2–3次；先用小批量预算",
+      "status": "2026-10-04官方文档/网页调研；registered/unavailable；尚未实现并验证真实来源采集；现阶段仅登记官方入口与适用范围，离线解析不代表抓取成功。",
+      "statusLabel": "待接入",
+      "credentials": "2026-10-11复核官方认证文档：基础查询可匿名；持续任务建议使用免费API key并监测预算。费用与配额按账号当前条件，不写死旧额度。",
+      "limitations": "索引记录不等于独立验证；作者/主题归属可能有误；元数据许可不代表全文许可",
+      "nextStep": "实现查询、摘要缺口标记、预算统计和DOI跨源去重",
+      "entryUrls": [
+        {
+          "label": "当前登记入口",
+          "url": "https://api.openalex.org/works"
+        },
+        {
+          "label": "原调研/官方说明",
+          "url": "https://help.openalex.org/api/"
+        },
+        {
+          "label": "认证与预算（10月11日复核）",
+          "url": "https://help.openalex.org/api/authentication/"
+        }
+      ],
+      "evidenceFile": [
+        "research/agriculture-source-discovery-2026-10-04.md",
+        "development/AgriTwin-Intelligence/config/sources.agriculture.json",
+        "plans/第9步执行结果.md"
+      ],
+      "scope": "external",
+      "scopeLabel": "外部资料",
+      "group": "research"
+    },
+    {
+      "id": "github-agriculture-tools",
+      "name": "GitHub农业工具与模型",
+      "priority": "P2",
+      "priorityReason": "研发实现线索，按明确工程需求扩展",
+      "category": "research",
+      "purpose": "作物模型、农业遥感、水质预测与数字孪生工具",
+      "accessMethod": "REST Search发现候选，再人工精选仓库并跟踪release/commit",
+      "frequency": "候选发现每日1次；重要发布按周汇总",
+      "status": "2026-10-04官方文档/网页调研；registered/unavailable；尚未实现并验证真实来源采集；现阶段仅登记官方入口与适用范围，离线解析不代表抓取成功。",
+      "statusLabel": "待接入",
+      "credentials": "公开仓库可匿名；持续任务建议服务器凭据；按REST与搜索额度限速",
+      "limitations": "star不是科学有效性；代码、模型和数据许可证分别核实；搜索独立限流",
+      "nextStep": "建立农业主题查询与精选仓库表，禁止恢复泛热榜",
+      "entryUrls": [
+        {
+          "label": "当前登记入口",
+          "url": "https://api.github.com/search/repositories"
+        },
+        {
+          "label": "原调研/官方说明",
+          "url": "https://docs.github.com/en/rest/search/search"
+        }
+      ],
+      "evidenceFile": [
+        "research/agriculture-source-discovery-2026-10-04.md",
+        "development/AgriTwin-Intelligence/config/sources.agriculture.json",
+        "plans/第9步执行结果.md"
+      ],
+      "scope": "external",
+      "scopeLabel": "外部资料",
+      "group": "research"
+    },
+    {
+      "id": "hubei-meteorological",
+      "name": "湖北省气象局",
+      "priority": "P2",
+      "priorityReason": "省级气象解释与主数据核对入口",
+      "category": "external_candidate",
+      "purpose": "湖北天气解释、预警来源核对",
+      "entryUrls": [
+        {
+          "label": "已调研官方入口/样例",
+          "url": "https://hb.cma.gov.cn/"
+        }
+      ],
+      "accessMethod": "官方公开栏目；作为和风补充核对，不重复建立主要天气管线",
+      "frequency": "每日1次或按专题查询（建议）",
+      "status": "2026-10-04站点与栏目已调研；未纳入12组配置，未实抓",
+      "statusLabel": "备选待验证",
+      "credentials": "公开页面；未验证专用API或自动访问授权",
+      "limitations": "尚无已验证结构化API；网页信息与具体预警有效期分别核对",
+      "nextStep": "固定正式栏目和发布者映射，再决定是否自动采集",
+      "evidenceFile": "research/agriculture-source-discovery-2026-10-04.md",
+      "scope": "external",
+      "scopeLabel": "外部资料",
+      "group": "weather"
+    },
+    {
+      "id": "ezhou-hydrology",
+      "name": "鄂州市水雨工情与梁子湖水位通报",
+      "priority": "P1",
+      "priorityReason": "农场与湖区水系有关时才有直接价值",
+      "category": "external_candidate",
+      "purpose": "区域水位、防汛与水雨工情背景",
+      "entryUrls": [
+        {
+          "label": "已调研官方入口/样例",
+          "url": "https://www.ezhou.gov.cn/syts/zntj/202607/t20260707_770878.html"
+        }
+      ],
+      "accessMethod": "先人工核对通报；稳定栏目或正式接口需另行确认",
+      "frequency": "汛期建议每日核对；确认稳定接口后再设频率",
+      "status": "2026-10-04官方通报样例已调研；未登记、未实抓",
+      "statusLabel": "备选待验证",
+      "credentials": "公开页面；未验证专用API或自动访问授权",
+      "limitations": "湖水位不等于塘水位；设防/警戒水位不能移作塘口阈值",
+      "nextStep": "确认农场水系关系、通报测站和高程基准，再建设适配",
+      "evidenceFile": "research/agriculture-source-discovery-2026-10-04.md",
+      "scope": "external",
+      "scopeLabel": "外部资料",
+      "group": "weather"
+    },
+    {
+      "id": "caas-iarrp",
+      "name": "中国农科院农业资源与农业区划研究所",
+      "priority": "P2",
+      "priorityReason": "种植遥感研发需求明确后启用",
+      "category": "external_candidate",
+      "purpose": "作物分类、干旱、土壤水分与过程模型研发线索",
+      "entryUrls": [
+        {
+          "label": "已调研官方入口/样例",
+          "url": "https://iarrp.caas.cn/kjkf/yyjzcg/index.htm"
+        }
+      ],
+      "accessMethod": "成果HTML栏目；追踪原论文、数据和可用模型",
+      "frequency": "每周1次（建议）",
+      "status": "2026-10-04成果栏目已调研；未登记、未实抓",
+      "statusLabel": "备选待验证",
+      "credentials": "公开页面；未验证专用API或自动访问授权",
+      "limitations": "成果介绍不等于开放API、源码或可在本场直接使用的模型",
+      "nextStep": "选定研究主题，核对数据/模型实际开放性和适用条件",
+      "evidenceFile": "research/agriculture-source-discovery-2026-10-04.md",
+      "scope": "external",
+      "scopeLabel": "外部资料",
+      "group": "research"
+    },
+    {
+      "id": "liangzihu-government",
+      "name": "梁子湖区政府涉农政策与农技方案",
+      "priority": "P1",
+      "priorityReason": "补齐本区政策与技术推广条件",
+      "category": "external_candidate",
+      "purpose": "本区农技推广、政策方案及后续验证资源",
+      "entryUrls": [
+        {
+          "label": "已调研官方入口/样例",
+          "url": "https://www.liangzh.gov.cn/lzhxxgk/jczwgkbzh/snbtly/202512/t20251219_740514.html"
+        }
+      ],
+      "accessMethod": "先核实已知政策原文和现行版本，再从官方导航固定栏目",
+      "frequency": "每周1次；重要政策窗口按需提高（建议）",
+      "status": "2026-10-04基层农技推广方案已调研；未登记、未实抓",
+      "statusLabel": "备选待验证",
+      "credentials": "公开页面；未验证专用API或自动访问授权",
+      "limitations": "样例为2025年方案；须核实有效期；地区概况不能推定本场品种",
+      "nextStep": "检查现行政策与适用主体，提取生效、截止及修订关系",
+      "evidenceFile": "research/agriculture-source-discovery-2026-10-04.md",
+      "scope": "external",
+      "scopeLabel": "外部资料",
+      "group": "official"
+    },
+    {
+      "id": "farm-objects",
+      "name": "农场对象与空间档案",
+      "priority": "P0",
+      "priorityReason": "确定几块田、几口塘和对象归属",
+      "category": "internal",
+      "purpose": "对象ID、父子关系、种类、名称、位置与版本",
+      "entryUrls": [
+        {
+          "label": "平台项目",
+          "url": "https://github.com/8jdkds7nzz-hub/liangzihu-farm-platform"
+        }
+      ],
+      "accessMethod": "已有GET /api/v1/objects及对象服务；先使用合成FarmSnapshot，后续平台服务端导出授权快照",
+      "frequency": "每次生成简报读取带版本与时间窗的授权快照；不重复采集设备数据",
+      "credentials": "复用平台对象级授权；现有会话API不能默认当作Bearer服务接口；独立阶段无平台凭据",
+      "status": "2026-10-04选取源码静态审阅；AgriTwin桥接未完成",
+      "statusLabel": "待桥接",
+      "limitations": "名称不能替代UUID；缺坐标不能生成假位置；仅查询获准对象",
+      "nextStep": "固定对象映射与快照协议",
+      "evidenceFile": [
+        "research/platform-integration-review-2026-10-04.md",
+        "research/liangzihu-farm-platform/src/modules/registry/objects.ts"
+      ],
+      "scope": "internal",
+      "scopeLabel": "内部数据/服务",
+      "group": "internal"
+    },
+    {
+      "id": "production-batches",
+      "name": "生产批次与种养背景",
+      "priority": "P0",
+      "priorityReason": "资料适用性必须知道当前种养对象",
+      "category": "internal",
+      "purpose": "物种、品种、阶段、起止时间、已确认状态和更正历史",
+      "entryUrls": [
+        {
+          "label": "平台项目",
+          "url": "https://github.com/8jdkds7nzz-hub/liangzihu-farm-platform"
+        }
+      ],
+      "accessMethod": "平台production batch服务提供字段；未假定独立机器查询API，纳入平台快照",
+      "frequency": "每次生成简报读取带版本与时间窗的授权快照；不重复采集设备数据",
+      "credentials": "复用平台对象级授权；现有会话API不能默认当作Bearer服务接口；独立阶段无平台凭据",
+      "status": "2026-10-04选取源码静态审阅；AgriTwin桥接未完成",
+      "statusLabel": "待桥接",
+      "limitations": "不能从日期猜阶段，不能由论文主题推断本场物种；按报告时点选择有效批次",
+      "nextStep": "建立批次时效与更正映射测试",
+      "evidenceFile": [
+        "research/platform-integration-review-2026-10-04.md",
+        "research/liangzihu-farm-platform/src/modules/registry/batches.ts"
+      ],
+      "scope": "internal",
+      "scopeLabel": "内部数据/服务",
+      "group": "internal"
+    },
+    {
+      "id": "sensor-observations",
+      "name": "传感器观测与测点质量",
+      "priority": "P0",
+      "priorityReason": "农场状态的直接事实输入",
+      "category": "internal",
+      "purpose": "测点读数、单位、采样时间、绑定、冲突和覆盖情况",
+      "entryUrls": [
+        {
+          "label": "平台项目",
+          "url": "https://github.com/8jdkds7nzz-hub/liangzihu-farm-platform"
+        }
+      ],
+      "accessMethod": "已有GET /api/v1/points/{id}/readings；消费平台已规范化观测，不重建设备网关",
+      "frequency": "每次生成简报读取带版本与时间窗的授权快照；不重复采集设备数据",
+      "credentials": "复用平台对象级授权；现有会话API不能默认当作Bearer服务接口；独立阶段无平台凭据",
+      "status": "2026-10-04选取源码静态审阅；AgriTwin桥接未完成",
+      "statusLabel": "待桥接",
+      "limitations": "历史补传不能冒充当前值；保留canonical、质量、冲突和绑定；接口分页及时间窗限制",
+      "nextStep": "验证授权时间窗、单位、断线与补传场景",
+      "evidenceFile": [
+        "research/platform-integration-review-2026-10-04.md",
+        "research/liangzihu-farm-platform/src/modules/telemetry/queries.ts"
+      ],
+      "scope": "internal",
+      "scopeLabel": "内部数据/服务",
+      "group": "internal"
+    },
+    {
+      "id": "metrics-alerts",
+      "name": "程序指标与告警结果",
+      "priority": "P0",
+      "priorityReason": "数值统计与规则结果应复用程序计算",
+      "category": "internal",
+      "purpose": "平台指标、定义版本、覆盖率、窗口和告警",
+      "entryUrls": [
+        {
+          "label": "平台项目",
+          "url": "https://github.com/8jdkds7nzz-hub/liangzihu-farm-platform"
+        }
+      ],
+      "accessMethod": "调用平台指标/告警业务服务，通过快照输出；没有假定新的公网接口",
+      "frequency": "每次生成简报读取带版本与时间窗的授权快照；不重复采集设备数据",
+      "credentials": "复用平台对象级授权；现有会话API不能默认当作Bearer服务接口；独立阶段无平台凭据",
+      "status": "2026-10-04选取源码静态审阅；AgriTwin桥接未完成",
+      "statusLabel": "待桥接",
+      "limitations": "定义与结果须有效；模型不重算后冒充平台指标；缺指标不等于正常",
+      "nextStep": "消费已批准定义的不可变指标及其引用",
+      "evidenceFile": [
+        "research/platform-integration-review-2026-10-04.md",
+        "research/liangzihu-farm-platform/src/modules/analysis/evidence.ts"
+      ],
+      "scope": "internal",
+      "scopeLabel": "内部数据/服务",
+      "group": "internal"
+    },
+    {
+      "id": "field-records",
+      "name": "农事、巡检与人工复测记录",
+      "priority": "P0",
+      "priorityReason": "解释传感器变化需要生产背景",
+      "category": "internal",
+      "purpose": "投喂、灌溉、巡检、人工测量、维修等已存在记录",
+      "entryUrls": [
+        {
+          "label": "平台项目",
+          "url": "https://github.com/8jdkds7nzz-hub/liangzihu-farm-platform"
+        }
+      ],
+      "accessMethod": "从平台农事与相关业务服务读授权记录，按对象和时间窗汇总入快照",
+      "frequency": "每次生成简报读取带版本与时间窗的授权快照；不重复采集设备数据",
+      "credentials": "复用平台对象级授权；现有会话API不能默认当作Bearer服务接口；独立阶段无平台凭据",
+      "status": "2026-10-04选取源码静态审阅；AgriTwin桥接未完成",
+      "statusLabel": "待桥接",
+      "limitations": "不同来源分开保留；无记录不能当作未执行；更正须保留版本",
+      "nextStep": "确认首个场景所需记录类型与证据引用",
+      "evidenceFile": [
+        "research/platform-integration-review-2026-10-04.md",
+        "research/liangzihu-farm-platform/src/modules/briefings/service.ts"
+      ],
+      "scope": "internal",
+      "scopeLabel": "内部数据/服务",
+      "group": "internal"
+    },
+    {
+      "id": "tasks-feedback",
+      "name": "任务状态与处置反馈",
+      "priority": "P1",
+      "priorityReason": "用于日报进度与后续效果回看",
+      "category": "internal",
+      "purpose": "待办、执行状态、确认结果和未解决事项",
+      "entryUrls": [
+        {
+          "label": "平台项目",
+          "url": "https://github.com/8jdkds7nzz-hub/liangzihu-farm-platform"
+        }
+      ],
+      "accessMethod": "已有GET /api/v1/tasks，结合简报审阅和任务服务；仅消费授权结果",
+      "frequency": "每次生成简报读取带版本与时间窗的授权快照；不重复采集设备数据",
+      "credentials": "复用平台对象级授权；现有会话API不能默认当作Bearer服务接口；独立阶段无平台凭据",
+      "status": "2026-10-04选取源码静态审阅；AgriTwin桥接未完成",
+      "statusLabel": "待桥接",
+      "limitations": "已派发不等于已完成；历史模型解释不作为新的独立事实",
+      "nextStep": "建立任务、事项与现场反馈的关联读取",
+      "evidenceFile": [
+        "research/platform-integration-review-2026-10-04.md",
+        "research/liangzihu-farm-platform/src/modules/briefings/service.ts"
+      ],
+      "scope": "internal",
+      "scopeLabel": "内部数据/服务",
+      "group": "internal"
+    },
+    {
+      "id": "approved-knowledge",
+      "name": "已审核知识与原文引用服务",
+      "priority": "P0",
+      "priorityReason": "为针对本场的解释提供可追溯依据",
+      "category": "internal",
+      "purpose": "文档、版本、适用对象、证据性质和引用片段",
+      "entryUrls": [
+        {
+          "label": "平台项目",
+          "url": "https://github.com/8jdkds7nzz-hub/liangzihu-farm-platform"
+        }
+      ],
+      "accessMethod": "已有GET /api/v1/knowledge/search与chunks/{id}；候选通过知识创建服务进入draft，审核后检索",
+      "frequency": "每次生成简报读取带版本与时间窗的授权快照；不重复采集设备数据",
+      "credentials": "复用平台对象级授权；现有会话API不能默认当作Bearer服务接口；独立阶段无平台凭据",
+      "status": "2026-10-04选取源码静态审阅；AgriTwin桥接未完成",
+      "statusLabel": "待桥接",
+      "limitations": "只检索当前获准且有效的知识；通用文档不能随意绑定所有对象；模型无审批权",
+      "nextStep": "固定知识检索与候选提交契约，测试撤回和冲突",
+      "evidenceFile": [
+        "research/platform-integration-review-2026-10-04.md",
+        "research/liangzihu-farm-platform/src/modules/knowledge/service.ts"
+      ],
+      "scope": "internal",
+      "scopeLabel": "内部数据/服务",
+      "group": "internal"
+    },
+    {
+      "id": "ontology-context",
+      "name": "本体与统一农场上下文服务（规划）",
+      "priority": "P1",
+      "priorityReason": "统一对象、关系和字段含义，减少重复维护",
+      "category": "internal",
+      "purpose": "田塘—批次—作物/鱼类—设备—指标—知识的关系",
+      "entryUrls": [
+        {
+          "label": "平台项目",
+          "url": "https://github.com/8jdkds7nzz-hub/liangzihu-farm-platform"
+        }
+      ],
+      "accessMethod": "基于平台对象、批次和知识服务定义统一查询契约；目前不声称存在ontology API",
+      "frequency": "每次生成简报读取带版本与时间窗的授权快照；不重复采集设备数据",
+      "credentials": "复用平台对象级授权；现有会话API不能默认当作Bearer服务接口；独立阶段无平台凭据",
+      "status": "依据本对话明确的设计需求；统一本体查询接口尚未确认或实现",
+      "statusLabel": "规划待确认",
+      "limitations": "本体定义不等于当前事实；原始观测留在时序存储；对象档案继续由平台维护",
+      "nextStep": "先核对总系统本体模块的实际接口与版本，再做只读映射",
+      "evidenceFile": [
+        "research/platform-integration-review-2026-10-04.md"
+      ],
+      "scope": "internal",
+      "scopeLabel": "内部数据/服务",
+      "group": "internal"
+    }
+  ],
+  "evidenceHashes": {
+    "research/agriculture-source-discovery-2026-10-04.md": "dd114642e2c3e5ccaf8c3f2990170d0c826a1e011e37245d1f7da3a301c5262e",
+    "plans/第9步执行结果.md": "14dfb24526eab262e41de71a84bab80c40ae50f49bf4233d86299f36d3beb23a",
+    "development/AgriTwin-Intelligence/config/sources.agriculture.json": "c23c08dde30a07d67a4b8cc7ff0d6de25610e678babc17ded1d1e5d8ffa9dafc",
+    "research/platform-integration-review-2026-10-04.md": "57eb824dc261149d94dd854ec66ca3eb5af77514840b9805029bc6728ef45382",
+    "plans/AgriTwin与梁子湖平台后续开发执行方案-v1.md": "dfe610ecec35f91ef4f7c29df3521ce230104787c8a7729f92ac51b8fb4b0f47"
+  },
+  "xmindFormatReference": "https://github.com/xmindltd/xmind-generator/blob/main/src/internal/serializer.ts"
+}
