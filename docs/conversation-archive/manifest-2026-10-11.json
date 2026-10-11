@@ -1,0 +1,635 @@
+{
+  "schema_version": 1,
+  "repository": "No1dry/AgriTwin-Intelligence",
+  "branch": "main",
+  "archive_root": "docs/conversation-archive",
+  "archived_on": "2026-10-11",
+  "document_count": 16,
+  "entries": [
+    {
+      "title": "详细开发执行方案 V1.1",
+      "category": "plans",
+      "original_date": "2026-10-04",
+      "date_basis": "document_date",
+      "archived_on": "2026-10-11",
+      "version": "archive-v1",
+      "source": "plans/AgriTwin与梁子湖平台后续开发执行方案-v1.md",
+      "path": "plans/2026-10-04/AgriTwin与梁子湖平台后续开发执行方案-v1-2026-10-04-archive-v1.md",
+      "source_sha256": "dfe610ecec35f91ef4f7c29df3521ce230104787c8a7729f92ac51b8fb4b0f47",
+      "archive_sha256": "4881f20d748be612c2c702090857f7fdd1702e65252022afb2c3b17d684c48c2",
+      "bytes": 50402
+    },
+    {
+      "title": "农业信源调研",
+      "category": "research",
+      "original_date": "2026-10-04",
+      "date_basis": "document_date",
+      "archived_on": "2026-10-11",
+      "version": "archive-v1",
+      "source": "research/agriculture-source-discovery-2026-10-04.md",
+      "path": "research/2026-10-04/agriculture-source-discovery-2026-10-04-archive-v1.md",
+      "source_sha256": "dd114642e2c3e5ccaf8c3f2990170d0c826a1e011e37245d1f7da3a301c5262e",
+      "archive_sha256": "54fe990e0b9b90b2611b27a7badeb2fde28212d1239150d7c38300f41596f093",
+      "bytes": 15936
+    },
+    {
+      "title": "梁子湖平台接口审阅",
+      "category": "research",
+      "original_date": "2026-10-04",
+      "date_basis": "document_date",
+      "archived_on": "2026-10-11",
+      "version": "archive-v1",
+      "source": "research/platform-integration-review-2026-10-04.md",
+      "path": "research/2026-10-04/platform-integration-review-2026-10-04-archive-v1.md",
+      "source_sha256": "57eb824dc261149d94dd854ec66ca3eb5af77514840b9805029bc6728ef45382",
+      "archive_sha256": "f2f96f23396191388c377f9287a48c183d864467f39c4884099cf48447e26608",
+      "bytes": 19297
+    },
+    {
+      "title": "第 1—8 步执行结果",
+      "category": "acceptance",
+      "original_date": "2026-10-04",
+      "date_basis": "document_date",
+      "archived_on": "2026-10-11",
+      "version": "archive-v1",
+      "source": "plans/第1-8步执行结果.md",
+      "path": "acceptance/2026-10-04/第1-8步执行结果-2026-10-04-archive-v1.md",
+      "source_sha256": "9deb92e4e4d369c3bf913e41e5897e8f6a40633b4ddbc6126fccaca1420c960a",
+      "archive_sha256": "314798c2f2ea39a5ffaf0f9dceaa85c9b2d6420151dd9a15e733c229320205b0",
+      "bytes": 5691
+    },
+    {
+      "title": "第 9 步执行结果",
+      "category": "acceptance",
+      "original_date": "2026-10-04",
+      "date_basis": "document_date",
+      "archived_on": "2026-10-11",
+      "version": "archive-v1",
+      "source": "plans/第9步执行结果.md",
+      "path": "acceptance/2026-10-04/第9步执行结果-2026-10-04-archive-v1.md",
+      "source_sha256": "14dfb24526eab262e41de71a84bab80c40ae50f49bf4233d86299f36d3beb23a",
+      "archive_sha256": "277b500e5840ac50f342ce76b77b83ef4a5fdd9e7739d4c10c11284adcbe9cf5",
+      "bytes": 5011
+    },
+    {
+      "title": "第 10 步 Kimi 测试准备",
+      "category": "acceptance",
+      "original_date": "2026-10-07",
+      "date_basis": "document_date",
+      "archived_on": "2026-10-11",
+      "version": "archive-v1",
+      "source": "plans/第10步执行结果.md",
+      "path": "acceptance/2026-10-07/第10步执行结果-2026-10-07-archive-v1.md",
+      "source_sha256": "aaa86e58bab8894ed3ffcbf52b442275d64412d6944d6f33eb2f86a2c9b2a5f1",
+      "archive_sha256": "786563c58c7aafa44f5b815dc1e8988aaf8539a74450ac69da0da3994f994a6f",
+      "bytes": 5111
+    },
+    {
+      "title": "独立展示站验收与发布状态",
+      "category": "acceptance",
+      "original_date": "2026-10-09",
+      "date_basis": "document_date",
+      "archived_on": "2026-10-11",
+      "version": "archive-v1",
+      "source": "plans/独立展示站本地验收与发布状态.md",
+      "path": "acceptance/2026-10-09/独立展示站本地验收与发布状态-2026-10-09-archive-v1.md",
+      "source_sha256": "7a25df0a013a79c2ed79e95c892b83b6b8956105ef8b4ed6e29d2e536b427af0",
+      "archive_sha256": "aaac26a880885549faaf58acb973f3e1b38bf9f0e104a3cb038eff07b2f644e6",
+      "bytes": 3818
+    },
+    {
+      "title": "原 135 项信源处置记录",
+      "category": "reference",
+      "original_date": "2026-10-04",
+      "date_basis": "document_date",
+      "archived_on": "2026-10-11",
+      "version": "archive-v1",
+      "source": "attachments/现有信源处置清单.csv",
+      "path": "reference/2026-10-04/现有信源处置清单-2026-10-04-archive-v1.csv",
+      "source_sha256": "d0f38450d9bbcbc006543bf0ed22d3c839cb9dfac8cfed74b591787f6a421f8d",
+      "archive_sha256": "d0f38450d9bbcbc006543bf0ed22d3c839cb9dfac8cfed74b591787f6a421f8d",
+      "bytes": 102432
+    },
+    {
+      "title": "农业数据协议（快照）",
+      "category": "technical",
+      "original_date": null,
+      "date_basis": "snapshot_date",
+      "archived_on": "2026-10-11",
+      "version": "archive-v1",
+      "source": "development/AgriTwin-Intelligence/docs/contracts.md",
+      "path": "technical/2026-10-11/contracts-2026-10-11-archive-v1.md",
+      "source_sha256": "f4c6d42fe361274422f3bd10d6c6d3fc31a4c4a82e30a6a82748fa8439350456",
+      "archive_sha256": "3cc0d919cdf9b8544d0856c4dc6c1df74065f4a43dd28e4ed35e21735a9d2bcf",
+      "bytes": 27116
+    },
+    {
+      "title": "Kimi 配置与测试指南（快照）",
+      "category": "technical",
+      "original_date": null,
+      "date_basis": "snapshot_date",
+      "archived_on": "2026-10-11",
+      "version": "archive-v1",
+      "source": "development/AgriTwin-Intelligence/docs/kimi-testing.md",
+      "path": "technical/2026-10-11/kimi-testing-2026-10-11-archive-v1.md",
+      "source_sha256": "8fb6b45149168e924ecb8538519f23c62761907714a432535cc159ecaf667273",
+      "archive_sha256": "d7877a4fd73ce7a6126ce96f1f01eb31f17735990b7c86abdbd4b5a6f90b38c7",
+      "bytes": 8979
+    },
+    {
+      "title": "农业来源使用说明（快照）",
+      "category": "technical",
+      "original_date": null,
+      "date_basis": "snapshot_date",
+      "archived_on": "2026-10-11",
+      "version": "archive-v1",
+      "source": "development/AgriTwin-Intelligence/docs/source-usage.md",
+      "path": "technical/2026-10-11/source-usage-2026-10-11-archive-v1.md",
+      "source_sha256": "a35b119afeb9725be04d82b76cc382618aa68d5ccdce151020c322eb00c4d0f1",
+      "archive_sha256": "6b047dd86194a8dd37ee114c424993a36b8b518bf42e45c62f719b25bf7d91d6",
+      "bytes": 12419
+    },
+    {
+      "title": "第 1—8 步技术验收（快照）",
+      "category": "technical",
+      "original_date": null,
+      "date_basis": "snapshot_date",
+      "archived_on": "2026-10-11",
+      "version": "archive-v1",
+      "source": "development/AgriTwin-Intelligence/docs/steps-1-8-acceptance.md",
+      "path": "technical/2026-10-11/steps-1-8-acceptance-2026-10-11-archive-v1.md",
+      "source_sha256": "560a66ac598fc4eff040627628ccfec3ed49b15e929e3241aba27f92f173598a",
+      "archive_sha256": "b71af495b16b5a1bc88f17e26ee4fc157d724394e90fb69b3d70c4a75b597f11",
+      "bytes": 4449
+    },
+    {
+      "title": "第 9 步技术验收（快照）",
+      "category": "technical",
+      "original_date": null,
+      "date_basis": "snapshot_date",
+      "archived_on": "2026-10-11",
+      "version": "archive-v1",
+      "source": "development/AgriTwin-Intelligence/docs/step-9-acceptance.md",
+      "path": "technical/2026-10-11/step-9-acceptance-2026-10-11-archive-v1.md",
+      "source_sha256": "4cfca8e5e6264b2393db642244dc3883be6822b04c85b27cb728675faa302cbe",
+      "archive_sha256": "acf7c3c42b49d9849335cc138fef2de3047a69c435518a5f18266d4024f6d346",
+      "bytes": 7629
+    },
+    {
+      "title": "信源全景 XMind（7 张图）",
+      "category": "mindmaps",
+      "original_date": "2026-10-11",
+      "date_basis": "document_date",
+      "archived_on": "2026-10-11",
+      "version": "archive-v1",
+      "source": "attachments/信源全景-2026-10-11/农业情报子系统-信源全景与接入优先级-2026-10-11.xmind",
+      "path": "mindmaps/2026-10-11/农业情报子系统-信源全景与接入优先级-2026-10-11-archive-v1.xmind",
+      "source_sha256": "d5cb00f9ef65b8d3de938f728baf71eb222312ca8ab7f082008745357cb8ad94",
+      "archive_sha256": "d5cb00f9ef65b8d3de938f728baf71eb222312ca8ab7f082008745357cb8ad94",
+      "bytes": 209591
+    },
+    {
+      "title": "信源全景 HTML 预览",
+      "category": "mindmaps",
+      "original_date": "2026-10-11",
+      "date_basis": "document_date",
+      "archived_on": "2026-10-11",
+      "version": "archive-v1",
+      "source": "attachments/信源全景-2026-10-11/农业情报子系统-信源全景与接入优先级-2026-10-11-预览.html",
+      "path": "mindmaps/2026-10-11/农业情报子系统-信源全景与接入优先级-2026-10-11-预览-archive-v1.html",
+      "source_sha256": "0db66fed9d4c3ecdefdc139244e147bafc3d5e0b67b6241de355ae08a9ef091f",
+      "archive_sha256": "0db66fed9d4c3ecdefdc139244e147bafc3d5e0b67b6241de355ae08a9ef091f",
+      "bytes": 72652
+    },
+    {
+      "title": "24 组信源结构化清单",
+      "category": "mindmaps",
+      "original_date": "2026-10-11",
+      "date_basis": "document_date",
+      "archived_on": "2026-10-11",
+      "version": "archive-v1",
+      "source": "attachments/信源全景-2026-10-11/信源清单.json",
+      "path": "mindmaps/2026-10-11/信源清单-2026-10-11-archive-v1.json",
+      "source_sha256": "0e01efb7fdd874bff4a7fea3209f18606e012ec96196be6c9d89a0146d4c8c20",
+      "archive_sha256": "0e01efb7fdd874bff4a7fea3209f18606e012ec96196be6c9d89a0146d4c8c20",
+      "bytes": 37606
+    }
+  ],
+  "link_adjustments": [
+    {
+      "file": "plans/2026-10-04/AgriTwin与梁子湖平台后续开发执行方案-v1-2026-10-04-archive-v1.md",
+      "kind": "archive_link",
+      "original": "第9步执行结果.md"
+    },
+    {
+      "file": "plans/2026-10-04/AgriTwin与梁子湖平台后续开发执行方案-v1-2026-10-04-archive-v1.md",
+      "kind": "archive_link",
+      "original": "第1-8步执行结果.md"
+    },
+    {
+      "file": "plans/2026-10-04/AgriTwin与梁子湖平台后续开发执行方案-v1-2026-10-04-archive-v1.md",
+      "kind": "archive_link",
+      "original": "../attachments/现有信源处置清单.csv"
+    },
+    {
+      "file": "plans/2026-10-04/AgriTwin与梁子湖平台后续开发执行方案-v1-2026-10-04-archive-v1.md",
+      "kind": "archive_link",
+      "original": "../research/agriculture-source-discovery-2026-10-04.md"
+    },
+    {
+      "file": "plans/2026-10-04/AgriTwin与梁子湖平台后续开发执行方案-v1-2026-10-04-archive-v1.md",
+      "kind": "archive_link",
+      "original": "../attachments/现有信源处置清单.csv"
+    },
+    {
+      "file": "plans/2026-10-04/AgriTwin与梁子湖平台后续开发执行方案-v1-2026-10-04-archive-v1.md",
+      "kind": "archive_link",
+      "original": "../research/agriculture-source-discovery-2026-10-04.md"
+    },
+    {
+      "file": "plans/2026-10-04/AgriTwin与梁子湖平台后续开发执行方案-v1-2026-10-04-archive-v1.md",
+      "kind": "archive_link",
+      "original": "../research/platform-integration-review-2026-10-04.md"
+    },
+    {
+      "file": "research/2026-10-04/agriculture-source-discovery-2026-10-04-archive-v1.md",
+      "kind": "local_reference",
+      "original": "liangzihu-farm-platform/src/adapters/qweather/client.ts"
+    },
+    {
+      "file": "acceptance/2026-10-04/第1-8步执行结果-2026-10-04-archive-v1.md",
+      "kind": "archive_link",
+      "original": "第9步执行结果.md"
+    },
+    {
+      "file": "acceptance/2026-10-04/第1-8步执行结果-2026-10-04-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../development/AgriTwin-Intelligence/README.md"
+    },
+    {
+      "file": "acceptance/2026-10-04/第1-8步执行结果-2026-10-04-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../development/AgriTwin-Intelligence/artifacts/agriculture/accepted-20261004140030948-pond-weather/report.html"
+    },
+    {
+      "file": "acceptance/2026-10-04/第1-8步执行结果-2026-10-04-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../development/AgriTwin-Intelligence/artifacts/agriculture/accepted-20261004140030948-normal/report.html"
+    },
+    {
+      "file": "acceptance/2026-10-04/第1-8步执行结果-2026-10-04-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../development/AgriTwin-Intelligence/artifacts/agriculture/accepted-20261004140030948-missing/report.html"
+    },
+    {
+      "file": "acceptance/2026-10-04/第1-8步执行结果-2026-10-04-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../development/AgriTwin-Intelligence/artifacts/agriculture/accepted-20261004140030948-expired/report.html"
+    },
+    {
+      "file": "acceptance/2026-10-04/第1-8步执行结果-2026-10-04-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../development/AgriTwin-Intelligence/artifacts/agriculture/accepted-20261004140030948-conflict/report.html"
+    },
+    {
+      "file": "acceptance/2026-10-04/第1-8步执行结果-2026-10-04-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../development/AgriTwin-Intelligence/artifacts/agriculture/accepted-20261004140030948-cancelled/report.html"
+    },
+    {
+      "file": "acceptance/2026-10-04/第1-8步执行结果-2026-10-04-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../development/AgriTwin-Intelligence/artifacts/agriculture/accepted-20261004140030948-field/report.html"
+    },
+    {
+      "file": "acceptance/2026-10-04/第1-8步执行结果-2026-10-04-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../development/AgriTwin-Intelligence/artifacts/agriculture/accepted-20261004140030948-out-of-order/report.html"
+    },
+    {
+      "file": "acceptance/2026-10-04/第1-8步执行结果-2026-10-04-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../development/AgriTwin-Intelligence/artifacts/agriculture/accepted-20261004140030948-pond-weather/candidate-bundle.json"
+    },
+    {
+      "file": "acceptance/2026-10-04/第1-8步执行结果-2026-10-04-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../development/AgriTwin-Intelligence/artifacts/acceptance/results.json"
+    },
+    {
+      "file": "acceptance/2026-10-04/第1-8步执行结果-2026-10-04-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../development/AgriTwin-Intelligence/artifacts/acceptance/tests.log"
+    },
+    {
+      "file": "acceptance/2026-10-04/第1-8步执行结果-2026-10-04-archive-v1.md",
+      "kind": "archive_link",
+      "original": "../development/AgriTwin-Intelligence/docs/contracts.md"
+    },
+    {
+      "file": "acceptance/2026-10-04/第1-8步执行结果-2026-10-04-archive-v1.md",
+      "kind": "archive_link",
+      "original": "../development/AgriTwin-Intelligence/docs/source-usage.md"
+    },
+    {
+      "file": "acceptance/2026-10-04/第1-8步执行结果-2026-10-04-archive-v1.md",
+      "kind": "archive_link",
+      "original": "../attachments/现有信源处置清单.csv"
+    },
+    {
+      "file": "acceptance/2026-10-04/第9步执行结果-2026-10-04-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../development/AgriTwin-Intelligence/README.md"
+    },
+    {
+      "file": "acceptance/2026-10-04/第9步执行结果-2026-10-04-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../development/AgriTwin-Intelligence/artifacts/agriculture/step9-accepted-1791126473793-real/report.html"
+    },
+    {
+      "file": "acceptance/2026-10-04/第9步执行结果-2026-10-04-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../development/AgriTwin-Intelligence/artifacts/agriculture/step9-accepted-1791126473793-failure/report.html"
+    },
+    {
+      "file": "acceptance/2026-10-04/第9步执行结果-2026-10-04-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../development/AgriTwin-Intelligence/artifacts/agriculture/step9-accepted-1791126473793-real/candidate-bundle.json"
+    },
+    {
+      "file": "acceptance/2026-10-04/第9步执行结果-2026-10-04-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../development/AgriTwin-Intelligence/artifacts/source-collections/step9-live-20261004-d/collection.json"
+    },
+    {
+      "file": "acceptance/2026-10-04/第9步执行结果-2026-10-04-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../development/AgriTwin-Intelligence/artifacts/acceptance/step9-results.json"
+    },
+    {
+      "file": "acceptance/2026-10-04/第9步执行结果-2026-10-04-archive-v1.md",
+      "kind": "archive_link",
+      "original": "../development/AgriTwin-Intelligence/docs/step-9-acceptance.md"
+    },
+    {
+      "file": "acceptance/2026-10-07/第10步执行结果-2026-10-07-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../development/AgriTwin-Intelligence/README.md"
+    },
+    {
+      "file": "acceptance/2026-10-07/第10步执行结果-2026-10-07-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../development/AgriTwin-Intelligence/.env.kimi.local"
+    },
+    {
+      "file": "acceptance/2026-10-07/第10步执行结果-2026-10-07-archive-v1.md",
+      "kind": "archive_link",
+      "original": "../development/AgriTwin-Intelligence/docs/kimi-testing.md"
+    },
+    {
+      "file": "acceptance/2026-10-07/第10步执行结果-2026-10-07-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../development/AgriTwin-Intelligence/artifacts/acceptance/step10-tests.log"
+    },
+    {
+      "file": "acceptance/2026-10-07/第10步执行结果-2026-10-07-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../development/AgriTwin-Intelligence/artifacts/acceptance/step10-check.log"
+    },
+    {
+      "file": "acceptance/2026-10-07/第10步执行结果-2026-10-07-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../development/AgriTwin-Intelligence/artifacts/acceptance/step10-cli-results.json"
+    },
+    {
+      "file": "acceptance/2026-10-07/第10步执行结果-2026-10-07-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../development/AgriTwin-Intelligence/artifacts/acceptance/step10-results.json"
+    },
+    {
+      "file": "acceptance/2026-10-07/第10步执行结果-2026-10-07-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../development/AgriTwin-Intelligence/artifacts/model-evaluations/step10-preflight-fixtures-20261007/report.html"
+    },
+    {
+      "file": "acceptance/2026-10-07/第10步执行结果-2026-10-07-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../development/AgriTwin-Intelligence/artifacts/model-evaluations/step10-preflight-public-20261007/report.html"
+    },
+    {
+      "file": "acceptance/2026-10-09/独立展示站本地验收与发布状态-2026-10-09-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../development/AgriTwin-Showcase/README.md"
+    },
+    {
+      "file": "technical/2026-10-11/contracts-2026-10-11-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../lib/agriculture/types.ts"
+    },
+    {
+      "file": "technical/2026-10-11/contracts-2026-10-11-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../lib/agriculture/schema.ts"
+    },
+    {
+      "file": "technical/2026-10-11/contracts-2026-10-11-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../lib/agriculture/validation.ts"
+    },
+    {
+      "file": "technical/2026-10-11/contracts-2026-10-11-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../lib/runtime/config.ts"
+    },
+    {
+      "file": "technical/2026-10-11/contracts-2026-10-11-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../lib/agriculture/context.ts"
+    },
+    {
+      "file": "technical/2026-10-11/contracts-2026-10-11-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../lib/agriculture/quality.ts"
+    },
+    {
+      "file": "technical/2026-10-11/contracts-2026-10-11-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../lib/agriculture/evidence.ts"
+    },
+    {
+      "file": "technical/2026-10-11/contracts-2026-10-11-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../lib/agriculture/applicability.ts"
+    },
+    {
+      "file": "technical/2026-10-11/contracts-2026-10-11-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../lib/agriculture/external-evidence.ts"
+    },
+    {
+      "file": "technical/2026-10-11/contracts-2026-10-11-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../lib/sources/official-agriculture.ts"
+    },
+    {
+      "file": "technical/2026-10-11/contracts-2026-10-11-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../lib/agriculture/events.ts"
+    },
+    {
+      "file": "technical/2026-10-11/contracts-2026-10-11-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../lib/agriculture/validation.ts"
+    },
+    {
+      "file": "technical/2026-10-11/contracts-2026-10-11-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../lib/runtime/hash.ts"
+    },
+    {
+      "file": "technical/2026-10-11/contracts-2026-10-11-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../lib/agriculture/store/filesystem.ts"
+    },
+    {
+      "file": "technical/2026-10-11/contracts-2026-10-11-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../lib/sources/archive.ts"
+    },
+    {
+      "file": "technical/2026-10-11/contracts-2026-10-11-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../scripts/agriculture-validate.ts"
+    },
+    {
+      "file": "technical/2026-10-11/contracts-2026-10-11-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../tests/agriculture/domain.test.ts"
+    },
+    {
+      "file": "technical/2026-10-11/contracts-2026-10-11-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../fixtures/agriculture/README.md"
+    },
+    {
+      "file": "technical/2026-10-11/contracts-2026-10-11-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../tests/agriculture/external-evidence.test.ts"
+    },
+    {
+      "file": "technical/2026-10-11/contracts-2026-10-11-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../lib/agriculture/model-evaluation.ts"
+    },
+    {
+      "file": "technical/2026-10-11/contracts-2026-10-11-archive-v1.md",
+      "kind": "archive_link",
+      "original": "kimi-testing.md"
+    },
+    {
+      "file": "technical/2026-10-11/kimi-testing-2026-10-11-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../.env.example"
+    },
+    {
+      "file": "technical/2026-10-11/kimi-testing-2026-10-11-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../lib/ai/kimi.ts"
+    },
+    {
+      "file": "technical/2026-10-11/source-usage-2026-10-11-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../config/sources.agriculture.json"
+    },
+    {
+      "file": "technical/2026-10-11/source-usage-2026-10-11-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../config/agriculture-profile.json"
+    },
+    {
+      "file": "technical/2026-10-11/source-usage-2026-10-11-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../lib/sources/official-agriculture.ts"
+    },
+    {
+      "file": "technical/2026-10-11/source-usage-2026-10-11-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../lib/sources/live-http.ts"
+    },
+    {
+      "file": "technical/2026-10-11/source-usage-2026-10-11-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../lib/sources/windows-http.ps1"
+    },
+    {
+      "file": "technical/2026-10-11/source-usage-2026-10-11-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../lib/agriculture/external-evidence.ts"
+    },
+    {
+      "file": "technical/2026-10-11/source-usage-2026-10-11-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../lib/sources/archive.ts"
+    },
+    {
+      "file": "technical/2026-10-11/source-usage-2026-10-11-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../tests/agriculture/sources.test.ts"
+    },
+    {
+      "file": "technical/2026-10-11/source-usage-2026-10-11-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../tests/agriculture/live-sources.test.ts"
+    },
+    {
+      "file": "technical/2026-10-11/source-usage-2026-10-11-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../tests/agriculture/source-archive.test.ts"
+    },
+    {
+      "file": "technical/2026-10-11/source-usage-2026-10-11-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../tests/agriculture/external-evidence.test.ts"
+    },
+    {
+      "file": "technical/2026-10-11/source-usage-2026-10-11-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../tests/agriculture/source-report.test.ts"
+    },
+    {
+      "file": "technical/2026-10-11/steps-1-8-acceptance-2026-10-11-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../artifacts/acceptance/results.json"
+    },
+    {
+      "file": "technical/2026-10-11/step-9-acceptance-2026-10-11-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../artifacts/agriculture/step9-accepted-1791126473793-real/report.html"
+    },
+    {
+      "file": "technical/2026-10-11/step-9-acceptance-2026-10-11-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../artifacts/agriculture/step9-accepted-1791126473793-real/candidate-bundle.json"
+    },
+    {
+      "file": "technical/2026-10-11/step-9-acceptance-2026-10-11-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../artifacts/agriculture/step9-accepted-1791126473793-failure/report.html"
+    },
+    {
+      "file": "technical/2026-10-11/step-9-acceptance-2026-10-11-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../artifacts/source-collections/step9-live-20261004-d/collection.json"
+    },
+    {
+      "file": "technical/2026-10-11/step-9-acceptance-2026-10-11-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../artifacts/acceptance/step9-results.json"
+    },
+    {
+      "file": "technical/2026-10-11/step-9-acceptance-2026-10-11-archive-v1.md",
+      "kind": "local_reference",
+      "original": "../artifacts/acceptance/step9-tests.log"
+    }
+  ]
+}
