@@ -8,6 +8,8 @@
 
 ## 文档入口
 
+- [对话文档归档](docs/conversation-archive/README.md)：2026-10-11 起按分类、日期和版本保存本项目交流生成的方案、调研、验收记录、XMind 等文档；文档所述本地开发状态不代表业务代码已经同步至本仓库。
+
 - [智慧农业数字孪生接入方案 V1](docs/agriculture-digital-twin-integration-v1.md)：业务场景、架构、模型分工、接口草案、部署、实施顺序和验收。
 - [代码来源与复制范围](UPSTREAM.md)：FeishuBrief 来源版本、保留内容及本次差异。
 - [继承的多模型运行说明](docs/multi-agent-runtime.md)：现有 Kimi 与 DeepSeek 工作流程。
