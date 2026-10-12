@@ -30,9 +30,10 @@ export function summaryEvidence(article: ExternalArticle): string {
 
 export function summaryQuoteOptions(article: ExternalArticle): {id:string;text:string}[] {
   const evidence=summaryEvidence(article),content=evidence.slice(evidence.indexOf('\n')+1);
-  const candidates=[truncate(content,40),truncate([...content].slice(180).join(''),40)].filter(text=>[...text].length>=8);
-  if(!candidates.length) candidates.push(truncate(evidence,40));
-  return [...new Set(candidates)].map((text,index)=>({id:`q${index+1}`,text}));
+  const parts=content.match(/[^。！？.!?\n]+(?:[。！？.!?]|$)/gu)??[content];
+  const candidates=parts.map(part=>{let text=truncate(part.trim(),60);if(part.trim().length>60 && /[a-zA-Z]/.test(text))text=text.replace(/\s+\S*$/u,'');return text;}).filter(text=>[...text].length>=8&&evidence.includes(text));
+  if(!candidates.length) candidates.push(truncate(evidence,60));
+  return [...new Set(candidates)].slice(0,2).map((text,index)=>({id:`q${index+1}`,text}));
 }
 
 /** A quote must be copied from the exact input. IDs bind summaries to fetched evidence; model URLs are never used. */

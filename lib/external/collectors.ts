@@ -2,8 +2,8 @@ import * as cheerio from 'cheerio';
 import { COLLECTOR_SOURCES, type CollectorSource } from './sources.js';
 import { createSourceHttp, hashText, robotsAllows, SourceError, type HttpOptions, type HttpResult } from './http.js';
 import type { ExternalArticle, SourceResult } from './types.js';
-const AGRICULTURE=/农业|农田|农技|涉农|水产|养殖|池塘|稻|鱼|渔|鳖|作物|土壤|粮食|病虫|墒情|灌溉|耕地|遥感|农机|防汛|水位|水雨|气象|干旱|降雨|预警|天气|aquacultur|agricultur|crop|rice|fish|soil|irrigat|drought|farming/i;
-const IRRELEVANT=/党建|巡察|纪检|干部任免|招聘|招标公告|采购公告|学习贯彻|党组|廉政|主题教育/;
+const AGRICULTURE=/农业|农田|农技|涉农|水产|养殖|池塘|稻|鱼|渔|鳖|作物|土壤|粮食|病虫|墒情|灌溉|耕地|遥感|农机|防汛|水位|水雨|气象|干旱|降雨|预警|天气|育种|泥鳅|aquacultur|agricultur|crop|rice|fish|soil|irrigat|drought|farming/i;
+const IRRELEVANT=/党建|巡察|纪检|干部任免|招聘|招标公告|采购公告|学习贯彻|党组|廉政|主题教育|退休干部|优胜奖|优秀组织奖/;
 const clean=(s:string)=>s.replace(/\s+/gu,' ').trim();
 const limit=(s:string,n:number)=>[...s].slice(0,n).join('');
 export function isAgricultural(title:string,content=''){return !IRRELEVANT.test(title)&&AGRICULTURE.test(`${title} ${content}`);}
@@ -58,6 +58,7 @@ export function discoverArticles(source:CollectorSource,html:string,base:string)
   try{const url=new URL($(element).attr('href')!,base);url.hash='';if(url.protocol!=='https:'||!source.hosts.includes(url.hostname)||url.username||url.password||/\.(?:pdf|docx?|jpg|png|zip)(?:$|\?)/i.test(url.href))return;
    if(/\/(?:index|list|category|channel|home|default|search)(?:[_-][^/]*)?\.(?:s?html?|aspx)$/i.test(url.pathname)||url.pathname.endsWith('/'))return;
    if(source.id==='caas-iarrp'&&!/^\/kjkf\/yyjzcg\/[a-f0-9]{16,40}\.htm$/i.test(url.pathname))return;
+   if(source.id==='hzau-fisheries-research'&&!/^\/info\/1311\/\d+\.htm$/i.test(url.pathname))return;
    if(source.id==='ezhou-hydrology'&&!/水位|水雨|雨情|汛情|防汛|梁子湖|水文/.test(label))return;
    const natescDetail=source.id==='natesc-crop-guidance'&&/^\/News\/des$/i.test(url.pathname)&&url.searchParams.has('id')&&url.searchParams.has('CategoryId');
    if((natescDetail||/\.(?:s?html?|aspx)(?:$|\?)|\/info\/|\/detail\/|\/20\d{2}\d{2}\//i.test(url.href))&&url.href!==base)found.push(url.href);
