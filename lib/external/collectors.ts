@@ -59,7 +59,8 @@ export function discoverArticles(source:CollectorSource,html:string,base:string)
    if(/\/(?:index|list|category|channel|home|default|search)(?:[_-][^/]*)?\.(?:s?html?|aspx)$/i.test(url.pathname)||url.pathname.endsWith('/'))return;
    if(source.id==='caas-iarrp'&&!/^\/kjkf\/yyjzcg\/[a-f0-9]{16,40}\.htm$/i.test(url.pathname))return;
    if(source.id==='ezhou-hydrology'&&!/水位|水雨|雨情|汛情|防汛|梁子湖|水文/.test(label))return;
-   if(/\.(?:s?html?|aspx)(?:$|\?)|\/info\/|\/detail\/|\/20\d{2}\d{2}\//i.test(url.href)&&url.href!==base)found.push(url.href);
+   const natescDetail=source.id==='natesc-crop-guidance'&&/^\/News\/des$/i.test(url.pathname)&&url.searchParams.has('id')&&url.searchParams.has('CategoryId');
+   if((natescDetail||/\.(?:s?html?|aspx)(?:$|\?)|\/info\/|\/detail\/|\/20\d{2}\d{2}\//i.test(url.href))&&url.href!==base)found.push(url.href);
   }catch{/* malformed links are not request targets */}
  });return[...new Set(found)];
 }

@@ -14,7 +14,7 @@ export const COLLECTOR_SOURCES: readonly CollectorSource[] = [
  source('nmc-agrometeorology','中央气象台农业气象','weather','https://www.nmc.cn/publish/agro/ten-week/index.html','P1','html',true),
  source('natesc-crop-guidance','全国农业技术推广服务中心','guidance','https://www.natesc.org.cn/Home/','P1'),
  source('moa-fisheries-guidance','农业农村部渔业渔政管理局','guidance','https://yyj.moa.gov.cn/tzgg/','P1'),
- source('hzau-fisheries-research','华中农业大学水产学院','research','https://cf.hzau.edu.cn/kyfw.htm','P2'),
+ source('hzau-fisheries-research','华中农业大学水产学院','research','https://cf.hzau.edu.cn/kyfw/kjdt.htm','P2'),
  source('fao-integrated-aquaculture','FAO 稻渔与复合种养资料','guidance','https://www.fao.org/4/y1187e/y1187e21.htm','P2','html',true,['https://www.fao.org/4/y1187e/y1187e27.htm']),
  source('arxiv-agriculture','arXiv 农业定向论文','research','https://export.arxiv.org/api/query','P1','arxiv'),
  source('openalex-agriculture','OpenAlex 农业定向研究','research','https://api.openalex.org/works','P1','openalex'),

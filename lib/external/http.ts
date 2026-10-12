@@ -37,7 +37,7 @@ export function createSourceHttp(hosts:readonly string[],requests:SourceResult['
     const bytes=Buffer.concat(chunks);responseHash=hashText(bytes);
     if(status>=300&&status<400){const location=response.headers.get('location');if(!location||redirects===2)throw new SourceError('REDIRECT_LIMIT');const target=checkedUrl(new URL(location,requestUrl).href,hosts);if(target.origin!==original.origin)throw new SourceError('CROSS_ORIGIN_REDIRECT');next=target.href;continue;}
     return{url:safeRequestUrl(requestUrl),status,text:decodeResponse(bytes,response.headers.get('content-type')??''),hash:responseHash,fetchedAt:(options.clock??(()=>new Date().toISOString()))(),bytes:size};
-   }catch(error){if(error instanceof SourceError)throw error;throw new SourceError(controller.signal.aborted?'HTTP_TIMEOUT':'HTTP_NETWORK_ERROR');}
+   }catch(error){if(error instanceof SourceError)throw error;const code=(error as {cause?:{code?:unknown}})?.cause?.code;const known=typeof code==='string'&&['ENOTFOUND','ECONNRESET','ECONNREFUSED','UND_ERR_CONNECT_TIMEOUT','CERT_HAS_EXPIRED','UNABLE_TO_VERIFY_LEAF_SIGNATURE','ERR_TLS_CERT_ALTNAME_INVALID'].includes(code);throw new SourceError(controller.signal.aborted?'HTTP_TIMEOUT':known?`HTTP_NETWORK_${code}`:'HTTP_NETWORK_ERROR');}
    finally{clearTimeout(timer);requests.push({url:safeRequestUrl(requestUrl),status,fetchedAt:(options.clock??(()=>new Date().toISOString()))(),responseHash,bytes:size});}
   }
   throw new SourceError('REDIRECT_LIMIT');
