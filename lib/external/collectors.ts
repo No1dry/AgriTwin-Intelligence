@@ -8,7 +8,7 @@ const clean=(s:string)=>s.replace(/\s+/gu,' ').trim();
 const limit=(s:string,n:number)=>[...s].slice(0,n).join('');
 export function isAgricultural(title:string,content=''){return !IRRELEVANT.test(title)&&AGRICULTURE.test(`${title} ${content}`);}
 export function publicationDate(input:string|null|undefined):Pick<ExternalArticle,'publishedAt'|'publishedDate'|'datePrecision'>{
- const value=input?.trim()??'',m=value.match(/(20\d{2})[年\/.\-](\d{1,2})[月\/.\-](\d{1,2})/);
+ const value=input?.trim()??'',m=value.match(/(20\d{2})\s*[年\/.\-]\s*(\d{1,2})\s*[月\/.\-]\s*(\d{1,2})/);
  if(!m)return{publishedAt:null,publishedDate:null,datePrecision:'unknown'};
  const date=`${m[1]}-${m[2].padStart(2,'0')}-${m[3].padStart(2,'0')}`;
  if(!Number.isFinite(Date.parse(date))||new Date(date).toISOString().slice(0,10)!==date)return{publishedAt:null,publishedDate:null,datePrecision:'unknown'};
@@ -29,6 +29,13 @@ export function parseHtmlArticle(source:CollectorSource,response:HttpResult):Ext
  const selectors=['.TRS_Editor','.trs_editor','.TRS_UEDITOR','.v_news_content','#zoom','#Zoom','#UCAP-CONTENT','.article-content','.article_content','.article-con','.article_con','.content-article','.art_content','.detail_content','.content-detail','.zw-content','.zwnr','article'];
  let body='';for(const selector of selectors){const t=clean($(selector).first().text());if(t.length>=60){body=t;break;}}
  const limitations:string[]=[];
+ if(source.id==='nmc-agrometeorology') {
+  // Verified against the official page DOM, 2026-10-13; never take menu text.
+  title=clean($('#text > .title').text()); body=clean($('#text > .writing').text());
+  const issued=$('#text > .author').text();
+  if(!title || body.length<200) return null;
+  return article(source,response,title,response.url,body,issued,['全国农业气象周报，非本场预警；图片和附表未结构化解析。','网页资料与图件再利用限制见中央气象台声明；原文短摘不替代原文。']);
+ }
  if(source.id==='fao-integrated-aquaculture') {
   if(!/^\/4\/y1187e\/y1187e(?:21|27)\.htm$/.test(new URL(response.url).pathname)) return null;
   const chapterTitle=$('h1,h2,h3').map((_,e)=>clean($(e).text())).get().find(t=>t.length>5&&!/^(?:integrated agriculture-aquaculture\b|contents\b|table of contents\b|a primer$)/i.test(t));
@@ -84,7 +91,7 @@ async function collectOne(source:CollectorSource,options:CollectOptions):Promise
    const response=await get(url.href),$=cheerio.load(response.text,{xml:true});
    $('entry').each((_,e)=>{if(result.articles.length>=maximum)return;const node=$(e),title=clean(node.find('title').text()),content=clean(node.find('summary').text()),link=node.find('id').text().replace(/^http:/,'https:');if(isAgricultural(title,content)&&content&&/^https:\/\/arxiv\.org\/abs\//.test(link))result.articles.push(article(source,response,title,link,content,node.find('published').text(),['arXiv 预印本，同行评审状态需另核；仅采集摘要。']));});
   }else if(source.adapter==='openalex'){
-   const url=new URL(source.url);url.search=new URLSearchParams({search:'aquaculture',sort:'publication_date:desc','per-page':'6'}).toString();if(credentials.openAlexKey)url.searchParams.set('api_key',credentials.openAlexKey);
+   const url=new URL(source.url);url.search=new URLSearchParams({search:'aquaculture',filter:`to_publication_date:${new Date().toISOString().slice(0,10)}`,sort:'publication_date:desc','per-page':'6'}).toString();if(credentials.openAlexKey)url.searchParams.set('api_key',credentials.openAlexKey);
    const response=await get(url.href),data=JSON.parse(response.text);
    for(const work of data.results??[]){if(result.articles.length>=maximum)break;const title=String(work.display_name??''),content=abstractText(work.abstract_inverted_index);if(!content){result.gaps.push('ABSTRACT_UNAVAILABLE');continue;}if(!isAgricultural(title,content))continue;const link=work.doi??work.primary_location?.landing_page_url??work.id;if(typeof link!=='string'||!link.startsWith('https://'))continue;result.articles.push(article(source,response,title,link,content,work.publication_date,['OpenAlex 索引摘要，未获取或验证论文全文；索引收录不代表研究已验证。']));}
   }else if(source.adapter==='github'){
@@ -106,7 +113,7 @@ async function collectOne(source:CollectorSource,options:CollectOptions):Promise
     result.articles.push(article(source,response,route.includes('alert')?'和风梁子湖区域预警 API 资料':'和风梁子湖区域日预报 API 资料',response.url,JSON.stringify(data),null,['官方 API 响应，预警有效期、取消/更新关系及归因需单独核实。','区域展示中心不是农场位置。']));
    }
   }
-  const seen=new Set<string>();result.articles=result.articles.filter(a=>{const key=a.url+a.contentHash;if(seen.has(key))return false;seen.add(key);return true;}).slice(0,maximum);
+  const seen=new Set<string>();result.articles=result.articles.filter(a=>{if(a.publishedDate && a.publishedDate>a.fetchedAt.slice(0,10)){result.gaps.push('FUTURE_PUBLICATION_DATE_EXCLUDED');return false;}const key=a.url+a.contentHash;if(seen.has(key))return false;seen.add(key);return true;}).slice(0,maximum);
   result.status=result.articles.length?result.gaps.length?'partial':'success':'empty';
  }catch(error){const code=error instanceof SourceError?error.code:error instanceof SyntaxError?'RESPONSE_PARSE_ERROR':'COLLECTOR_ERROR';result.errors.push(code);result.status=result.articles.length?'partial':/ROBOTS|HTTP_40[13]|HTTP_429|CREDENTIAL|HOST_INVALID/.test(code)?'blocked':'failed';}
  return result;
