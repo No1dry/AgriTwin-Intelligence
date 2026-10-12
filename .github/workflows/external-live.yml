@@ -1,0 +1,70 @@
+name: External agriculture collection and Kimi briefing
+on:
+  workflow_dispatch:
+    inputs:
+      run_model:
+        description: 'Call official Kimi: maximum 3 requests / 1024 output tokens each'
+        required: true
+        type: boolean
+        default: true
+permissions:
+  contents: read
+concurrency:
+  group: external-agriculture-live
+  cancel-in-progress: false
+jobs:
+  brief:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: '24'
+          package-manager-cache: false
+      - name: Install locked dependencies without source or model credentials
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Check collection and summary contracts offline
+        run: node --import tsx --test tests/external-*.test.ts
+      - name: Collect public sources and generate a bounded briefing
+        id: collect
+        env:
+          RUN_MODEL: ${{ inputs.run_model }}
+          MOONSHOT_API_KEY: ${{ secrets.MOONSHOT_API_KEY }}
+          QWEATHER_API_HOST: ${{ secrets.QWEATHER_API_HOST }}
+          QWEATHER_API_KEY: ${{ secrets.QWEATHER_API_KEY }}
+          QWEATHER_JWT: ${{ secrets.QWEATHER_JWT }}
+          OPENALEX_API_KEY: ${{ secrets.OPENALEX_API_KEY }}
+          GITHUB_SOURCE_TOKEN: ${{ github.token }}
+        run: |
+          if [ "$RUN_MODEL" = 'true' ]; then
+            node --import tsx scripts/external-brief.ts --live
+          else
+            node --import tsx scripts/external-brief.ts
+          fi
+      - name: Preserve the sanitized result for inspection
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: external-brief-${{ github.run_id }}
+          path: |
+            artifacts/external/latest.json
+            artifacts/external/brief.md
+          if-no-files-found: warn
+          retention-days: 7
+      - name: Publish only the validated public briefing
+        if: ${{ !cancelled() && steps.collect.outputs.public_ready == 'true' }}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- public/external/latest.json public/external/brief.md
+          if ! git diff --cached --quiet; then
+            git commit -m 'data: refresh external agricultural briefing'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
