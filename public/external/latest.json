@@ -1,0 +1,770 @@
+{
+  "schemaVersion": 1,
+  "kind": "agritwin-external-intelligence",
+  "meta": {
+    "generatedAt": "2026-10-12T16:35:18.270Z",
+    "dataAsOf": "2026-10-12T16:35:15.741Z",
+    "farmConnected": false,
+    "modelExecution": "not_run"
+  },
+  "region": {
+    "name": "鄂州 · 梁子湖",
+    "center": [
+      114.625,
+      30.1417
+    ],
+    "verified": false,
+    "context": "梁子湖区地理范围中点（推算），非农场定位"
+  },
+  "sources": [
+    {
+      "id": "hubei-fisheries-extension",
+      "name": "湖北省农业事业发展中心（水产技术资料）",
+      "category": "guidance",
+      "url": "https://hbnysy.hubei.gov.cn/bmdt/ywdt/",
+      "priority": "P0",
+      "accessMethod": "公开 HTML 列表发现与详情抽取；附件仅识别",
+      "credentialRequired": false,
+      "status": "empty",
+      "reason": "NO_EXTRACTABLE_AGRICULTURAL_ARTICLES: 页面可访问不等于取得有效文章；可能为动态列表、图像或未匹配正文。",
+      "articleCount": 0,
+      "fetchedAt": "2026-10-12T16:35:06.022Z"
+    },
+    {
+      "id": "ezhou-agriculture",
+      "name": "鄂州市农业农村局",
+      "category": "policy",
+      "url": "https://nyj.ezhou.gov.cn/xwzx/tzgg/",
+      "priority": "P0",
+      "accessMethod": "公开 HTML 列表发现与详情抽取；附件仅识别",
+      "credentialRequired": false,
+      "status": "failed",
+      "reason": "HTTP_NETWORK_ERROR",
+      "articleCount": 0,
+      "fetchedAt": "2026-10-12T16:35:05.541Z"
+    },
+    {
+      "id": "hubei-agriculture",
+      "name": "湖北省农业农村厅",
+      "category": "policy",
+      "url": "https://nyt.hubei.gov.cn/bmdt/",
+      "priority": "P1",
+      "accessMethod": "公开 HTML 列表发现与详情抽取；附件仅识别",
+      "credentialRequired": false,
+      "status": "success",
+      "reason": "",
+      "articleCount": 2,
+      "fetchedAt": "2026-10-12T16:35:09.177Z"
+    },
+    {
+      "id": "qweather-weather-alerts",
+      "name": "和风天气（日预报与预警）",
+      "category": "weather",
+      "url": "https://dev.qweather.com/docs/api/warning/weather-alert/",
+      "priority": "P0",
+      "accessMethod": "qweather 官方公开接口",
+      "credentialRequired": true,
+      "status": "blocked",
+      "reason": "CREDENTIALS_REQUIRED: QWEATHER_API_HOST 与 QWEATHER_API_KEY 或 QWEATHER_JWT 未配置；日预报与预警均未接通，不能解释为无预警。",
+      "articleCount": 0,
+      "fetchedAt": null
+    },
+    {
+      "id": "nmc-agrometeorology",
+      "name": "中央气象台农业气象",
+      "category": "weather",
+      "url": "https://www.nmc.cn/publish/agro/ten-week/index.html",
+      "priority": "P1",
+      "accessMethod": "公开 HTML 列表发现与详情抽取；附件仅识别",
+      "credentialRequired": false,
+      "status": "empty",
+      "reason": "NO_EXTRACTABLE_AGRICULTURAL_ARTICLES: 页面可访问不等于取得有效文章；可能为动态列表、图像或未匹配正文。",
+      "articleCount": 0,
+      "fetchedAt": "2026-10-12T16:35:10.145Z"
+    },
+    {
+      "id": "natesc-crop-guidance",
+      "name": "全国农业技术推广服务中心",
+      "category": "guidance",
+      "url": "https://www.natesc.org.cn/Home/",
+      "priority": "P1",
+      "accessMethod": "公开 HTML 列表发现与详情抽取；附件仅识别",
+      "credentialRequired": false,
+      "status": "failed",
+      "reason": "HTTP_NETWORK_ERROR",
+      "articleCount": 0,
+      "fetchedAt": "2026-10-12T16:35:08.819Z"
+    },
+    {
+      "id": "moa-fisheries-guidance",
+      "name": "农业农村部渔业渔政管理局",
+      "category": "guidance",
+      "url": "https://yyj.moa.gov.cn/tzgg/",
+      "priority": "P1",
+      "accessMethod": "公开 HTML 列表发现与详情抽取；附件仅识别",
+      "credentialRequired": false,
+      "status": "success",
+      "reason": "",
+      "articleCount": 2,
+      "fetchedAt": "2026-10-12T16:35:13.041Z"
+    },
+    {
+      "id": "hzau-fisheries-research",
+      "name": "华中农业大学水产学院",
+      "category": "research",
+      "url": "https://cf.hzau.edu.cn/kyfw.htm",
+      "priority": "P2",
+      "accessMethod": "公开 HTML 列表发现与详情抽取；附件仅识别",
+      "credentialRequired": false,
+      "status": "failed",
+      "reason": "HTTP_NETWORK_ERROR",
+      "articleCount": 0,
+      "fetchedAt": "2026-10-12T16:35:10.490Z"
+    },
+    {
+      "id": "fao-integrated-aquaculture",
+      "name": "FAO 稻渔与复合种养资料",
+      "category": "guidance",
+      "url": "https://www.fao.org/4/y1187e/y1187e21.htm",
+      "priority": "P2",
+      "accessMethod": "公开 HTML 列表发现与详情抽取；附件仅识别",
+      "credentialRequired": false,
+      "status": "success",
+      "reason": "",
+      "articleCount": 2,
+      "fetchedAt": "2026-10-12T16:35:12.605Z"
+    },
+    {
+      "id": "arxiv-agriculture",
+      "name": "arXiv 农业定向论文",
+      "category": "research",
+      "url": "https://export.arxiv.org/api/query",
+      "priority": "P1",
+      "accessMethod": "arxiv 官方公开接口",
+      "credentialRequired": false,
+      "status": "success",
+      "reason": "",
+      "articleCount": 2,
+      "fetchedAt": "2026-10-12T16:35:10.649Z"
+    },
+    {
+      "id": "openalex-agriculture",
+      "name": "OpenAlex 农业定向研究",
+      "category": "research",
+      "url": "https://api.openalex.org/works",
+      "priority": "P1",
+      "accessMethod": "openalex 官方公开接口",
+      "credentialRequired": false,
+      "status": "blocked",
+      "reason": "HTTP_429",
+      "articleCount": 0,
+      "fetchedAt": "2026-10-12T16:35:10.848Z"
+    },
+    {
+      "id": "github-agriculture-tools",
+      "name": "GitHub 农业工具与模型",
+      "category": "tool",
+      "url": "https://api.github.com/search/repositories",
+      "priority": "P2",
+      "accessMethod": "github 官方公开接口",
+      "credentialRequired": false,
+      "status": "success",
+      "reason": "",
+      "articleCount": 2,
+      "fetchedAt": "2026-10-12T16:35:11.261Z"
+    },
+    {
+      "id": "hubei-meteorological",
+      "name": "湖北省气象局",
+      "category": "weather",
+      "url": "https://hb.cma.gov.cn/",
+      "priority": "P2",
+      "accessMethod": "公开 HTML 列表发现与详情抽取；附件仅识别",
+      "credentialRequired": false,
+      "status": "success",
+      "reason": "",
+      "articleCount": 2,
+      "fetchedAt": "2026-10-12T16:35:15.505Z"
+    },
+    {
+      "id": "ezhou-hydrology",
+      "name": "鄂州市水雨工情与梁子湖水位通报",
+      "category": "weather",
+      "url": "https://www.ezhou.gov.cn/syts/zntj/",
+      "priority": "P1",
+      "accessMethod": "公开 HTML 列表发现与详情抽取；附件仅识别",
+      "credentialRequired": false,
+      "status": "failed",
+      "reason": "HTTP_NETWORK_ERROR",
+      "articleCount": 0,
+      "fetchedAt": "2026-10-12T16:35:14.228Z"
+    },
+    {
+      "id": "caas-iarrp",
+      "name": "中国农科院农业资源与农业区划研究所",
+      "category": "research",
+      "url": "https://iarrp.caas.cn/kjkf/yyjzcg/index.htm",
+      "priority": "P2",
+      "accessMethod": "公开 HTML 列表发现与详情抽取；附件仅识别",
+      "credentialRequired": false,
+      "status": "empty",
+      "reason": "ARTICLE_FILTERED_OR_BODY_UNAVAILABLE；ARTICLE_FILTERED_OR_BODY_UNAVAILABLE；ARTICLE_FILTERED_OR_BODY_UNAVAILABLE；NO_EXTRACTABLE_AGRICULTURAL_ARTICLES: 页面可访问不等于取得有效文章；可能为动态列表、图像或未匹配正文。",
+      "articleCount": 0,
+      "fetchedAt": "2026-10-12T16:35:18.254Z"
+    },
+    {
+      "id": "liangzihu-government",
+      "name": "梁子湖区政府涉农政策与农技方案",
+      "category": "policy",
+      "url": "https://www.liangzh.gov.cn/lzhxxgk/jczwgkbzh/snbtly/",
+      "priority": "P1",
+      "accessMethod": "公开 HTML 列表发现与详情抽取；附件仅识别",
+      "credentialRequired": false,
+      "status": "failed",
+      "reason": "HTTP_NETWORK_ERROR",
+      "articleCount": 0,
+      "fetchedAt": "2026-10-12T16:35:15.699Z"
+    },
+    {
+      "id": "open-meteo-regional-weather",
+      "name": "Open-Meteo 区域模型天气（补充来源）",
+      "category": "weather",
+      "url": "https://api.open-meteo.com/v1/forecast",
+      "priority": "P0",
+      "accessMethod": "open-meteo 官方公开接口",
+      "credentialRequired": false,
+      "status": "success",
+      "reason": "",
+      "articleCount": 1,
+      "fetchedAt": "2026-10-12T16:35:15.741Z"
+    }
+  ],
+  "articles": [
+    {
+      "id": "ext-6e8b2f7c104097d59b9b",
+      "sourceId": "hubei-meteorological",
+      "title": "【每日天气】今明天晴暖持续 阴雨登场后气温转凉",
+      "category": "weather",
+      "publisher": "湖北省气象局",
+      "publishedAt": null,
+      "publishedDate": "2026-10-12",
+      "datePrecision": "date",
+      "url": "https://hb.cma.gov.cn/xwzx/qxzt/2015mrtq/202610/t20261012_8085471.html",
+      "excerpt": "昨日（11日）07时至今日07时，全省晴天到多云为主，十堰出现小雨、局地中雨。最高气温28～32℃，最低气温15～19℃。预计12日至14日白天，我省大部地区晴天到多云，其中12日鄂西北和鄂西南有短时小雨，13日恩施有小到中雨、局地大雨。14日晚至15日，恩施、宜昌南部、荆州、武汉、鄂州、咸宁、黄石、黄冈有中雨到大雨，恩施南部14日晚、咸宁和黄石15日局地暴",
+      "tags": [],
+      "limitations": [
+        "发布日期仅精确到日，不推断具体时刻或时区。",
+        "外部资料未经农场适用性审核；内部农场信息 N/A。",
+        "全文、附件、代码及数据的再利用许可需单独核实。"
+      ],
+      "extractionStatus": "collected",
+      "synthetic": false,
+      "responseHash": "7a3934c6ee9a34450eb88277ca9d8ceafe3d6f2bfde437723fe97b67711aa74a",
+      "contentHash": "7060f9eeba2a781e2fff2db8bdbbc1ad3aa54ebf9dfcc875a1d9bf4bcaa2316d",
+      "fetchedAt": "2026-10-12T16:35:14.518Z",
+      "modelSummary": {
+        "status": "not_run",
+        "summary": null,
+        "evidenceQuote": null,
+        "citations": [],
+        "limitations": [
+          "本次只采集，尚未调用模型。"
+        ]
+      }
+    },
+    {
+      "id": "ext-c53af53651a89406a23e",
+      "sourceId": "arxiv-agriculture",
+      "title": "Anaximander: Interactively Running Geospatial Deep Learning Models on Any Compute Backend",
+      "category": "research",
+      "publisher": "arXiv 农业定向论文",
+      "publishedAt": "2026-10-06T20:31:38Z",
+      "publishedDate": "2026-10-06",
+      "datePrecision": "datetime",
+      "url": "https://arxiv.org/abs/2610.09085v1",
+      "excerpt": "Applying deep learning models to satellite imagery from within geographic information systems (GIS) remains high-friction for remote sensing practitioners. Models arrive in incompa",
+      "tags": [],
+      "limitations": [
+        "arXiv 预印本，同行评审状态需另核；仅采集摘要。",
+        "外部资料未经农场适用性审核；内部农场信息 N/A。",
+        "全文、附件、代码及数据的再利用许可需单独核实。"
+      ],
+      "extractionStatus": "collected",
+      "synthetic": false,
+      "responseHash": "bcb3bf6adab02028f5c8febfd1047b08b6b863631c1dbc94597d45ab74d9847f",
+      "contentHash": "c9ecfdb4bb358e6f1b650ff1aa276be2f1511dcae91e2ff8a8691c9c09a32185",
+      "fetchedAt": "2026-10-12T16:35:10.648Z",
+      "modelSummary": {
+        "status": "not_run",
+        "summary": null,
+        "evidenceQuote": null,
+        "citations": [],
+        "limitations": [
+          "本次只采集，尚未调用模型。"
+        ]
+      }
+    },
+    {
+      "id": "ext-acf0c1ffd613d6ffa130",
+      "sourceId": "arxiv-agriculture",
+      "title": "Generating eukaryotic reference genome assemblies: Earth BioGenome Project quality standards and recommendations",
+      "category": "research",
+      "publisher": "arXiv 农业定向论文",
+      "publishedAt": "2026-10-02T09:58:24Z",
+      "publishedDate": "2026-10-02",
+      "datePrecision": "datetime",
+      "url": "https://arxiv.org/abs/2610.03075v1",
+      "excerpt": "Reference genome assemblies are foundational resources across the biological sciences as they begin to expose the fundamental building blocks of each species and the molecular tool",
+      "tags": [],
+      "limitations": [
+        "arXiv 预印本，同行评审状态需另核；仅采集摘要。",
+        "外部资料未经农场适用性审核；内部农场信息 N/A。",
+        "全文、附件、代码及数据的再利用许可需单独核实。"
+      ],
+      "extractionStatus": "collected",
+      "synthetic": false,
+      "responseHash": "bcb3bf6adab02028f5c8febfd1047b08b6b863631c1dbc94597d45ab74d9847f",
+      "contentHash": "5f4689b6f6c7e9106533dbab976ba797926cf4b6dd3ff2ebe26b7ffef84d899d",
+      "fetchedAt": "2026-10-12T16:35:10.648Z",
+      "modelSummary": {
+        "status": "not_run",
+        "summary": null,
+        "evidenceQuote": null,
+        "citations": [],
+        "limitations": [
+          "本次只采集，尚未调用模型。"
+        ]
+      }
+    },
+    {
+      "id": "ext-46e01b7e807e9bbf932f",
+      "sourceId": "hubei-meteorological",
+      "title": "【中国气象】面对强降雨，武汉这座超大城市何以从容？​",
+      "category": "weather",
+      "publisher": "湖北省气象局",
+      "publishedAt": null,
+      "publishedDate": "2026-09-28",
+      "datePrecision": "date",
+      "url": "https://hb.cma.gov.cn/xwzx/mtjj/202609/t20260928_8069268.html",
+      "excerpt": "编者按：9月22日，中国气象微信公众号报刊发文章《面对强降雨，武汉这座超大城市何以从容？》，现将全文转载如下：大江奔流，百湖相望。9月17日，“高质量发展中国行·新时代的气象万千”主题采访报道组来到武汉，一座被长江、汉江拥抱的超大城市：166个湖泊星罗棋布，总汇水面积达5925.2平方公里，占到全市面积近七成。“百湖之城”，名副其实。水，是这座城的底色，也是",
+      "tags": [],
+      "limitations": [
+        "发布日期仅精确到日，不推断具体时刻或时区。",
+        "外部资料未经农场适用性审核；内部农场信息 N/A。",
+        "全文、附件、代码及数据的再利用许可需单独核实。"
+      ],
+      "extractionStatus": "collected",
+      "synthetic": false,
+      "responseHash": "388f95ca74ff3eaa8dff0acf9b1a861922e596653318aab0333951afeaeaf056",
+      "contentHash": "1b35ad65f75e0e04d8b34a820e3da285ccb7ade362885f9f4442b5b4546f1fe4",
+      "fetchedAt": "2026-10-12T16:35:15.505Z",
+      "modelSummary": {
+        "status": "not_run",
+        "summary": null,
+        "evidenceQuote": null,
+        "citations": [],
+        "limitations": [
+          "本次只采集，尚未调用模型。"
+        ]
+      }
+    },
+    {
+      "id": "ext-4305dfa050100d27e2c8",
+      "sourceId": "hubei-agriculture",
+      "title": "省农业农村厅组织退休干部赴罗田开展学习培训活动",
+      "category": "policy",
+      "publisher": "湖北省农业农村厅",
+      "publishedAt": null,
+      "publishedDate": "2026-09-28",
+      "datePrecision": "date",
+      "url": "https://nyt.hubei.gov.cn/bmdt/yw/ywdt/tltxgbc/202609/t20260928_6023927.shtml",
+      "excerpt": "为丰富退休干部组织生活，引导老党员感悟红色历史、见证乡村振兴成效，提高党建业务能力，9月23日至24日，省农业农村厅组织厅机关离退休干部党委委员及党支部书记（委员）赴黄冈市罗田县开展学习教育培训活动。两天的行程紧凑而充实，老同志们在一场场实地参观与专题学习中，汲取精神力量，坚定初心使命，强化党建责任。 红色旧址忆峥嵘，古街风貌话初心活动的第一站来到胜利镇革命",
+      "tags": [],
+      "limitations": [
+        "发布日期仅精确到日，不推断具体时刻或时区。",
+        "外部资料未经农场适用性审核；内部农场信息 N/A。",
+        "全文、附件、代码及数据的再利用许可需单独核实。"
+      ],
+      "extractionStatus": "collected",
+      "synthetic": false,
+      "responseHash": "4f1003af7e97e58abf16f99c421e586a9d28dfd71c88ca676a0aaaa63b73e120",
+      "contentHash": "3ba2aa3190c7976075fb0b6f44452ab9a5524dfd145fddda7224f5725c06bac5",
+      "fetchedAt": "2026-10-12T16:35:08.157Z",
+      "modelSummary": {
+        "status": "not_run",
+        "summary": null,
+        "evidenceQuote": null,
+        "citations": [],
+        "limitations": [
+          "本次只采集，尚未调用模型。"
+        ]
+      }
+    },
+    {
+      "id": "ext-44b41bb27069e1d1f4c4",
+      "sourceId": "hubei-agriculture",
+      "title": "长阳代表队斩获2026丰收节“云播丰年”电商大赛优胜奖 县农业农村局获评优秀组织奖",
+      "category": "policy",
+      "publisher": "湖北省农业农村厅",
+      "publishedAt": null,
+      "publishedDate": "2026-09-27",
+      "datePrecision": "date",
+      "url": "https://nyt.hubei.gov.cn/bmdt/yw/ywdt/snygbdsxx/202609/t20260927_6022965.shtml",
+      "excerpt": "近日，2026年中国农民丰收节“云播丰年”村播电商大赛在湖北枣阳圆满落幕。代表长阳土家族自治县出征的好鄂巾帼助农团队凭借扎实的直播带货能力、特色本土农产推介实力，在全省参赛队伍中脱颖而出，荣获“沃土之星·2026年度最受喜爱农人”优胜奖，长阳土家族自治县农业农村局因组织推荐有力、数智推广成效突出，获评本次大赛“优秀组织奖”。赛事期间，好鄂助农团队聚焦长阳山蔬",
+      "tags": [],
+      "limitations": [
+        "发布日期仅精确到日，不推断具体时刻或时区。",
+        "外部资料未经农场适用性审核；内部农场信息 N/A。",
+        "全文、附件、代码及数据的再利用许可需单独核实。"
+      ],
+      "extractionStatus": "collected",
+      "synthetic": false,
+      "responseHash": "b97f6e8c720e128bba5300ffd96f852152130ea2051b6b66278f9a67529547bc",
+      "contentHash": "3af64da7980efbf30d51bcdfeed48d10baee9cc7796a87e73e8b3f63f573436e",
+      "fetchedAt": "2026-10-12T16:35:09.177Z",
+      "modelSummary": {
+        "status": "not_run",
+        "summary": null,
+        "evidenceQuote": null,
+        "citations": [],
+        "limitations": [
+          "本次只采集，尚未调用模型。"
+        ]
+      }
+    },
+    {
+      "id": "ext-2bee54427541807abe9d",
+      "sourceId": "moa-fisheries-guidance",
+      "title": "农业农村部渔业渔政管理局公布第十六批养殖河鲀鱼源场名单",
+      "category": "guidance",
+      "publisher": "农业农村部渔业渔政管理局",
+      "publishedAt": null,
+      "publishedDate": "2026-08-19",
+      "datePrecision": "date",
+      "url": "https://yyj.moa.gov.cn/tzgg/202608/t20260819_6486767.htm",
+      "excerpt": "根据《农业部办公厅关于开展养殖河鲀鱼源基地备案工作的通知》（农办渔〔2016〕20号）要求，中国渔业协会组织对大连天正实业有限公司等3家单位申请的养殖河鲀鱼源场进行了审查，经材料审核、专家组现场审查和网上公示，大李家鱼源场等3个养殖场符合要求，确定为养殖河鲀鱼源场，现予以公布。名单如下： 序号 鱼源场名称 备案品种 备案编号 备注 1 大连天正实业有限公司：",
+      "tags": [],
+      "limitations": [
+        "发布日期仅精确到日，不推断具体时刻或时区。",
+        "外部资料未经农场适用性审核；内部农场信息 N/A。",
+        "全文、附件、代码及数据的再利用许可需单独核实。"
+      ],
+      "extractionStatus": "collected",
+      "synthetic": false,
+      "responseHash": "d6d9f51063d49e4e63e5ccff94cad108439248cce7a7562dbc6314940888bff5",
+      "contentHash": "eeb665910386111b844875bfee0de63d887de43da8fcef51fab06303eb5a151b",
+      "fetchedAt": "2026-10-12T16:35:12.206Z",
+      "modelSummary": {
+        "status": "not_run",
+        "summary": null,
+        "evidenceQuote": null,
+        "citations": [],
+        "limitations": [
+          "本次只采集，尚未调用模型。"
+        ]
+      }
+    },
+    {
+      "id": "ext-5b3cf0731733d645039f",
+      "sourceId": "moa-fisheries-guidance",
+      "title": "关于疏勒河特有鱼类等7个国家级水产种质资源保护区优化调整情况的公示",
+      "category": "guidance",
+      "publisher": "农业农村部渔业渔政管理局",
+      "publishedAt": null,
+      "publishedDate": "2026-07-13",
+      "datePrecision": "date",
+      "url": "https://yyj.moa.gov.cn/tzgg/202607/t20260713_6485750.htm",
+      "excerpt": "根据《中华人民共和国渔业法》和《水产种质资源保护区管理暂行办法》《国家级水产种质资源保护区边界确定技术审查要点》等有关规定，甘肃省、辽宁省向我部申请对疏勒河特有鱼类等7个国家级水产种质资源保护区进行优化调整。经我部组织审查，拟对上述国家级水产种质资源保护区进行优化调整（详见附件）。 现予公示，时间为5个工作日。对上述情况如有异议，可在公示期内通过电子邮件向我",
+      "tags": [],
+      "limitations": [
+        "发现附件；附件未下载或解析，正文不代表附件全文。",
+        "发布日期仅精确到日，不推断具体时刻或时区。",
+        "外部资料未经农场适用性审核；内部农场信息 N/A。",
+        "全文、附件、代码及数据的再利用许可需单独核实。"
+      ],
+      "extractionStatus": "collected",
+      "synthetic": false,
+      "responseHash": "cc68a37598d9e096676796c37c780b0be0c81645b495d32b5c855600245f8b13",
+      "contentHash": "64e7b8312e2e5ea20849c629ee4665b12c874a2b89a715fc2abf2f04d167fb39",
+      "fetchedAt": "2026-10-12T16:35:13.041Z",
+      "modelSummary": {
+        "status": "not_run",
+        "summary": null,
+        "evidenceQuote": null,
+        "citations": [],
+        "limitations": [
+          "本次只采集，尚未调用模型。"
+        ]
+      }
+    },
+    {
+      "id": "ext-9e83c05aaab7688b0889",
+      "sourceId": "open-meteo-regional-weather",
+      "title": "梁子湖区域模型天气与三日预报",
+      "category": "weather",
+      "publisher": "Open-Meteo 区域模型天气（补充来源）",
+      "publishedAt": null,
+      "publishedDate": null,
+      "datePrecision": "unknown",
+      "url": "https://api.open-meteo.com/v1/forecast?latitude=30.1417&longitude=114.625&current=temperature_2m%2Crelative_humidity_2m%2Cprecipitation%2Cwind_speed_10m%2Cweather_code&daily=temperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&forecast_days=3&timezone=Asia%2FShanghai",
+      "excerpt": "Open-Meteo 区域模型数据（不是传感器实测），模型网格 30.123022,114.602806，时间 2026-10-13T00:30 Asia/Shanghai。当前模型字段：{\"time\":\"2026-10-13T00:30\",\"interval\":900,\"temperature_2m\":21.4,\"relative_humidity_2m\"",
+      "tags": [],
+      "limitations": [
+        "坐标为梁子湖区范围推算中心附近模型网格，非农场定位。",
+        "Open-Meteo 补充来源，不代表和风预警已接通，也不能据此判断无预警。",
+        "归因 Open-Meteo；按官方条款使用，免费接口面向非商业用途：https://open-meteo.com/en/terms",
+        "未识别可靠发布日期，采集时间不作为发布时间。",
+        "外部资料未经农场适用性审核；内部农场信息 N/A。",
+        "全文、附件、代码及数据的再利用许可需单独核实。"
+      ],
+      "extractionStatus": "collected",
+      "synthetic": false,
+      "responseHash": "4b76b1324b23ccb536bddebacaf55ac16bd26e68f2e623138d7f6dc3f1926bf5",
+      "contentHash": "a206e63236371b3502b1cdafac2c11a1a9949b947c6bf80aece211ad05a78410",
+      "fetchedAt": "2026-10-12T16:35:15.741Z",
+      "modelSummary": {
+        "status": "not_run",
+        "summary": null,
+        "evidenceQuote": null,
+        "citations": [],
+        "limitations": [
+          "本次只采集，尚未调用模型。"
+        ]
+      }
+    },
+    {
+      "id": "ext-888099b08557d0232107",
+      "sourceId": "fao-integrated-aquaculture",
+      "title": "Preparation of field for rice-fish culture",
+      "category": "guidance",
+      "publisher": "FAO 稻渔与复合种养资料",
+      "publishedAt": null,
+      "publishedDate": null,
+      "datePrecision": "unknown",
+      "url": "https://www.fao.org/4/y1187e/y1187e27.htm",
+      "excerpt": "Good preparation is very important in order to succeed in rice-fish culture. Every farmer must be able to: Having a satisfactory water situation in the field is a key factor in the",
+      "tags": [],
+      "limitations": [
+        "2001年出版物章节，月日未知；仅提取段落，图表与历史单位换算未核验。",
+        "历史国际背景资料，不是今日资讯或本地操作依据。",
+        "未识别可靠发布日期，采集时间不作为发布时间。",
+        "外部资料未经农场适用性审核；内部农场信息 N/A。",
+        "全文、附件、代码及数据的再利用许可需单独核实。"
+      ],
+      "extractionStatus": "collected",
+      "synthetic": false,
+      "responseHash": "8a1fae8758e3c267647e7562eb45a379fe22d49a5a2b012281e1b4ec138a85c0",
+      "contentHash": "61121b75115ec5689f02e4fc028de8d9b036dabdaeced9d0df9fdd3a5c78cbf9",
+      "fetchedAt": "2026-10-12T16:35:12.605Z",
+      "modelSummary": {
+        "status": "not_run",
+        "summary": null,
+        "evidenceQuote": null,
+        "citations": [],
+        "limitations": [
+          "本次只采集，尚未调用模型。"
+        ]
+      }
+    },
+    {
+      "id": "ext-bbeb5d728940ee854758",
+      "sourceId": "fao-integrated-aquaculture",
+      "title": "Rice-fish systems in China",
+      "category": "guidance",
+      "publisher": "FAO 稻渔与复合种养资料",
+      "publishedAt": null,
+      "publishedDate": null,
+      "datePrecision": "unknown",
+      "url": "https://www.fao.org/4/y1187e/y1187e21.htm",
+      "excerpt": "Rice-fish farming, an age-old practice in China, can be traced back more than 1 700 years, although recently it has been largely ignored. Integrated rice-fish farming in China is g",
+      "tags": [],
+      "limitations": [
+        "2001年出版物章节，月日未知；仅提取段落，图表与历史单位换算未核验。",
+        "历史国际背景资料，不是今日资讯或本地操作依据。",
+        "未识别可靠发布日期，采集时间不作为发布时间。",
+        "外部资料未经农场适用性审核；内部农场信息 N/A。",
+        "全文、附件、代码及数据的再利用许可需单独核实。"
+      ],
+      "extractionStatus": "collected",
+      "synthetic": false,
+      "responseHash": "abd1bda53f618b3b52b3df261c5faa01ed5636429ede6824e01ec02cb1339ec5",
+      "contentHash": "3334f702a1352b004b34d3002405c42fe1999de4e5d33f6c9e26e2a33e448773",
+      "fetchedAt": "2026-10-12T16:35:11.385Z",
+      "modelSummary": {
+        "status": "not_run",
+        "summary": null,
+        "evidenceQuote": null,
+        "citations": [],
+        "limitations": [
+          "本次只采集，尚未调用模型。"
+        ]
+      }
+    },
+    {
+      "id": "ext-4e81977e83202a2bae93",
+      "sourceId": "github-agriculture-tools",
+      "title": "ErabliereApi/ErabliereApi",
+      "category": "tool",
+      "publisher": "GitHub 农业工具与模型",
+      "publishedAt": null,
+      "publishedDate": null,
+      "datePrecision": "unknown",
+      "url": "https://github.com/ErabliereApi/ErabliereApi",
+      "excerpt": "API Pour recueillir et centraliser les informations des appareils dans des érablières",
+      "tags": [],
+      "limitations": [
+        "工具仓库描述，未运行或验证代码；星标不代表科学有效性。",
+        "仓库更新时间：2026-10-12T16:10:43Z；不作为论文或发布版本的发表时间。",
+        "仓库许可元数据：Apache-2.0；模型、数据许可另核。",
+        "未识别可靠发布日期，采集时间不作为发布时间。",
+        "外部资料未经农场适用性审核；内部农场信息 N/A。",
+        "全文、附件、代码及数据的再利用许可需单独核实。"
+      ],
+      "extractionStatus": "collected",
+      "synthetic": false,
+      "responseHash": "a1ec8bc07b6beabaeb2381dfdd205b705ceac50ea99d7b1cc4b913a1f5f5cb18",
+      "contentHash": "9b0192cda89a20f3d14ce766f87f672d758a6ce5bc7ece24035dae60f58ef07c",
+      "fetchedAt": "2026-10-12T16:35:11.261Z",
+      "modelSummary": {
+        "status": "not_run",
+        "summary": null,
+        "evidenceQuote": null,
+        "citations": [],
+        "limitations": [
+          "本次只采集，尚未调用模型。"
+        ]
+      }
+    },
+    {
+      "id": "ext-edec22669746c152ff52",
+      "sourceId": "github-agriculture-tools",
+      "title": "Khristo19/kvali",
+      "category": "tool",
+      "publisher": "GitHub 农业工具与模型",
+      "publishedAt": null,
+      "publishedDate": null,
+      "datePrecision": "unknown",
+      "url": "https://github.com/Khristo19/kvali",
+      "excerpt": "Farmers pay for drone spraying only when the work is proven. Operators get paid on proof. Built on Solana (devnet demo, test money).",
+      "tags": [],
+      "limitations": [
+        "工具仓库描述，未运行或验证代码；星标不代表科学有效性。",
+        "仓库更新时间：2026-10-12T16:14:17Z；不作为论文或发布版本的发表时间。",
+        "仓库许可元数据：MIT；模型、数据许可另核。",
+        "未识别可靠发布日期，采集时间不作为发布时间。",
+        "外部资料未经农场适用性审核；内部农场信息 N/A。",
+        "全文、附件、代码及数据的再利用许可需单独核实。"
+      ],
+      "extractionStatus": "collected",
+      "synthetic": false,
+      "responseHash": "a1ec8bc07b6beabaeb2381dfdd205b705ceac50ea99d7b1cc4b913a1f5f5cb18",
+      "contentHash": "c73f9fdd6f5bc17209133b2496f6f72615f16b8960271454c0d95799e497022a",
+      "fetchedAt": "2026-10-12T16:35:11.261Z",
+      "modelSummary": {
+        "status": "not_run",
+        "summary": null,
+        "evidenceQuote": null,
+        "citations": [],
+        "limitations": [
+          "本次只采集，尚未调用模型。"
+        ]
+      }
+    }
+  ],
+  "collection": {
+    "status": "partial",
+    "articleCount": 13,
+    "sourceStatuses": [
+      {
+        "sourceId": "hubei-fisheries-extension",
+        "status": "empty"
+      },
+      {
+        "sourceId": "ezhou-agriculture",
+        "status": "failed"
+      },
+      {
+        "sourceId": "hubei-agriculture",
+        "status": "success"
+      },
+      {
+        "sourceId": "qweather-weather-alerts",
+        "status": "blocked"
+      },
+      {
+        "sourceId": "nmc-agrometeorology",
+        "status": "empty"
+      },
+      {
+        "sourceId": "natesc-crop-guidance",
+        "status": "failed"
+      },
+      {
+        "sourceId": "moa-fisheries-guidance",
+        "status": "success"
+      },
+      {
+        "sourceId": "hzau-fisheries-research",
+        "status": "failed"
+      },
+      {
+        "sourceId": "fao-integrated-aquaculture",
+        "status": "success"
+      },
+      {
+        "sourceId": "arxiv-agriculture",
+        "status": "success"
+      },
+      {
+        "sourceId": "openalex-agriculture",
+        "status": "blocked"
+      },
+      {
+        "sourceId": "github-agriculture-tools",
+        "status": "success"
+      },
+      {
+        "sourceId": "hubei-meteorological",
+        "status": "success"
+      },
+      {
+        "sourceId": "ezhou-hydrology",
+        "status": "failed"
+      },
+      {
+        "sourceId": "caas-iarrp",
+        "status": "empty"
+      },
+      {
+        "sourceId": "liangzihu-government",
+        "status": "failed"
+      },
+      {
+        "sourceId": "open-meteo-regional-weather",
+        "status": "success"
+      }
+    ]
+  },
+  "modelRun": {
+    "status": "not_run",
+    "model": "kimi-k2.6",
+    "ranAt": null,
+    "finishedAt": null,
+    "workflowUrl": "https://github.com/No1dry/AgriTwin-Intelligence/actions/runs/38278385894",
+    "usage": null,
+    "calls": 0,
+    "summary": "采集 13 篇；模型成功摘要 0 篇；调用 0/3 次。"
+  },
+  "weather": {
+    "latitude": 30.123022,
+    "longitude": 114.602806,
+    "temperatureC": 21.4,
+    "humidityPercent": 84,
+    "windKph": 1.7,
+    "precipitationMm": 0,
+    "time": "2026-10-13T00:30:00+08:00",
+    "kind": "model_forecast",
+    "provider": "Open-Meteo"
+  },
+  "internal": null
+}
