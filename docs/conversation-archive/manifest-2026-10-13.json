@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "repository": "No1dry/AgriTwin-Intelligence",
+  "branch": "main",
+  "archive_root": "docs/conversation-archive",
+  "archived_on": "2026-10-13",
+  "document_count": 9,
+  "entries": [
+    {
+      "title": "AgriTwin-Intelligence-运行说明-2026-10-13-v1",
+      "category": "technical",
+      "original_date": "2026-10-13",
+      "archived_on": "2026-10-13",
+      "version": "v1",
+      "path": "technical/2026-10-13/AgriTwin-Intelligence-运行说明-2026-10-13-v1.md",
+      "archive_sha256": "77c305657aa9b8d4de22f69d6914dbd649ae90a7c11dac8789f1cd3cb527ef24",
+      "bytes": 3243
+    },
+    {
+      "title": "AgriTwin-Showcase-使用与部署说明-2026-10-13-v1",
+      "category": "technical",
+      "original_date": "2026-10-13",
+      "archived_on": "2026-10-13",
+      "version": "v1",
+      "path": "technical/2026-10-13/AgriTwin-Showcase-使用与部署说明-2026-10-13-v1.md",
+      "archive_sha256": "3b400980f27273d700dbf559ee82cb308081314b9ab37c0979be8bfc70e5c0a8",
+      "bytes": 1955
+    },
+    {
+      "title": "外部情报开发维护规则-2026-10-13-v1",
+      "category": "technical",
+      "original_date": "2026-10-13",
+      "archived_on": "2026-10-13",
+      "version": "v1",
+      "path": "technical/2026-10-13/外部情报开发维护规则-2026-10-13-v1.md",
+      "archive_sha256": "ca89c3ecae26ee08c1812c7f242ec533224eb1d86183cbe014cf1702a3d480f1",
+      "bytes": 2370
+    },
+    {
+      "title": "外部情报采集与简报技术说明-2026-10-13-v1",
+      "category": "technical",
+      "original_date": "2026-10-13",
+      "archived_on": "2026-10-13",
+      "version": "v1",
+      "path": "technical/2026-10-13/外部情报采集与简报技术说明-2026-10-13-v1.md",
+      "archive_sha256": "3b1b66bc4a1df272f4176894cea93a9de2fd2fe75bd408ea6165eb1af1b5c656",
+      "bytes": 5809
+    },
+    {
+      "title": "外部信源真实运行与Pages验收-2026-10-13-v1",
+      "category": "acceptance",
+      "original_date": "2026-10-13",
+      "archived_on": "2026-10-13",
+      "version": "v1",
+      "path": "acceptance/2026-10-13/外部信源真实运行与Pages验收-2026-10-13-v1.md",
+      "archive_sha256": "de2f15470a8aa1767a4277d3796bb8cd2918f492620e78f1c7b43b7130310c80",
+      "bytes": 6384
+    },
+    {
+      "title": "最终Kimi实测-2026-10-13-v1",
+      "category": "acceptance",
+      "original_date": "2026-10-13",
+      "archived_on": "2026-10-13",
+      "version": "v1",
+      "path": "acceptance/2026-10-13/最终Kimi实测-2026-10-13-v1.json",
+      "archive_sha256": "c7e0169b7568ec3779a708b33aee57efdd34d37b50f45529c966f75d943b725d",
+      "bytes": 41487
+    },
+    {
+      "title": "最终真实农业简报-2026-10-13-v1",
+      "category": "acceptance",
+      "original_date": "2026-10-13",
+      "archived_on": "2026-10-13",
+      "version": "v1",
+      "path": "acceptance/2026-10-13/最终真实农业简报-2026-10-13-v1.md",
+      "archive_sha256": "aada1860828c351a451a33cdd5e65b0edf67052121ef87ddda17cae6b448f849",
+      "bytes": 7691
+    },
+    {
+      "title": "第二轮Kimi实测-2026-10-13-v1",
+      "category": "acceptance",
+      "original_date": "2026-10-13",
+      "archived_on": "2026-10-13",
+      "version": "v1",
+      "path": "acceptance/2026-10-13/第二轮Kimi实测-2026-10-13-v1.json",
+      "archive_sha256": "60c8679051466a45384dd243cf5f6b5b1f5050c844a3dd7cf36d260177e4efd9",
+      "bytes": 51093
+    },
+    {
+      "title": "首次Kimi实测-2026-10-13-v1",
+      "category": "acceptance",
+      "original_date": "2026-10-13",
+      "archived_on": "2026-10-13",
+      "version": "v1",
+      "path": "acceptance/2026-10-13/首次Kimi实测-2026-10-13-v1.json",
+      "archive_sha256": "e0d2a1cb6d8e9ca15f61403bee91a104c15ec4726cdcd7be2744f0077dca75fc",
+      "bytes": 39305
+    }
+  ]
+}
