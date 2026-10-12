@@ -148,16 +148,16 @@ test('review: one billed request with unknown usage invalidates the apparent com
 test('review: cache rejects malformed, future and stale envelope timestamps', () => {
   for (const collectedAt of ['invalid-date', '2026-10-12T15:01:00.000Z', '2026-10-11T14:59:59.000Z']) {
     const value = cache(); value.collectedAt = collectedAt;
-    assert.throws(() => validateCollectionCache(value, now, [source.id]), undefined, collectedAt);
+    assert.throws(() => validateCollectionCache(value, now, [source.id]), collectedAt);
   }
 });
 
 test('review: a fresh cache envelope cannot relabel stale or future source responses', () => {
   for (const fetchedAt of ['invalid-date', '2026-10-11T14:59:59.000Z', '2026-10-12T15:01:00.000Z']) {
     const staleRequest = cache(); staleRequest.results[0].requests[0].fetchedAt = fetchedAt;
-    assert.throws(() => validateCollectionCache(staleRequest, now, [source.id]), undefined, `request ${fetchedAt}`);
+    assert.throws(() => validateCollectionCache(staleRequest, now, [source.id]), `request ${fetchedAt}`);
     const staleArticle = cache(); staleArticle.results[0].articles[0].fetchedAt = fetchedAt;
-    assert.throws(() => validateCollectionCache(staleArticle, now, [source.id]), undefined, `article ${fetchedAt}`);
+    assert.throws(() => validateCollectionCache(staleArticle, now, [source.id]), `article ${fetchedAt}`);
   }
 });
 
