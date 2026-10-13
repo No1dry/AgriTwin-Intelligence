@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "archived_on": "2026-10-13",
+  "document_count": 4,
+  "release": {
+    "repository": "No1dry/AgriTwin-Showcase",
+    "branch": "main",
+    "commit": "f31939d6909bc94fc72b0f3f2669666713a75600",
+    "status": "deployed",
+    "workflow": "https://github.com/No1dry/AgriTwin-Showcase/actions/runs/38345862935",
+    "site": "https://no1dry.github.io/AgriTwin-Showcase/"
+  },
+  "entries": [
+    {
+      "path": "technical/2026-10-13/AgriTwin-Showcase-使用与部署说明-2026-10-13-v2.md",
+      "version": "v2",
+      "archived_on": "2026-10-13",
+      "bytes": 2447,
+      "sha256": "2371edde131ff3195dc52885ac2c9596286dadaefa95904c0b47794373cb7575"
+    },
+    {
+      "path": "technical/2026-10-13/展示站成品开发规则-2026-10-13-v1.md",
+      "version": "v1",
+      "archived_on": "2026-10-13",
+      "bytes": 1500,
+      "sha256": "79eb350a3dfe0fec9ecb5c67506c84a0454770e7a30a40349f97a2ce18b1d62e"
+    },
+    {
+      "path": "technical/2026-10-13/项目成品与归档约定-2026-10-13-v1.md",
+      "version": "v1",
+      "archived_on": "2026-10-13",
+      "bytes": 2833,
+      "sha256": "55a5dc70fcea90640a462c35704537e5708405a778c07d82cc2faae9b4f45931"
+    },
+    {
+      "path": "acceptance/2026-10-13/展示站设计复刻验收-2026-10-13-v1.md",
+      "version": "v1",
+      "archived_on": "2026-10-13",
+      "bytes": 3241,
+      "sha256": "44e7c4dcbd71f71e28d23f8099842d23b876a705d7c0e3424919771e4b7991b1"
+    }
+  ]
+}
