@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "archived_on": "2026-10-13",
+  "document_count": 4,
+  "release": {
+    "repository": "No1dry/AgriTwin-Showcase",
+    "branch": "main",
+    "commit": "3e8fb4def8c077f67dc4698664e86536fad68c61",
+    "status": "deployed",
+    "workflow": "https://github.com/No1dry/AgriTwin-Showcase/actions/runs/38351725130",
+    "site": "https://no1dry.github.io/AgriTwin-Showcase/",
+    "verified_files": [
+      "public/index.html",
+      "public/assets/app.css",
+      "public/assets/app.js",
+      "public/assets/weather.js",
+      "public/data/showcase.json",
+      "scripts/build.mjs",
+      "tests/site.test.mjs",
+      "tests/weather.test.mjs",
+      "README.md",
+      "AGENTS.md"
+    ]
+  },
+  "entries": [
+    {
+      "path": "technical/2026-10-13/AgriTwin-Showcase-使用与部署说明-2026-10-13-v3.md",
+      "version": "v3",
+      "document_date": "2026-10-13",
+      "archived_on": "2026-10-13",
+      "source_relative_path": "development/AgriTwin-Showcase/README.md",
+      "bytes": 4408,
+      "sha256": "5e280dafe1b11d8fc794046471abdd6f86a202331cf612bd23df4a6e70237e4f",
+      "status": "release_verified"
+    },
+    {
+      "path": "technical/2026-10-13/展示站成品开发规则-2026-10-13-v2.md",
+      "version": "v2",
+      "document_date": "2026-10-13",
+      "archived_on": "2026-10-13",
+      "source_relative_path": "development/AgriTwin-Showcase/AGENTS.md",
+      "bytes": 2200,
+      "sha256": "95cb5f6adbefc38223570d5c3cfec5962bf5d9f5fc5bc7b739593c5d8040d2f7",
+      "status": "release_verified"
+    },
+    {
+      "path": "technical/2026-10-13/项目成品与归档约定-2026-10-13-v2.md",
+      "version": "v2",
+      "document_date": "2026-10-13",
+      "archived_on": "2026-10-13",
+      "source_relative_path": "AGENTS.md",
+      "bytes": 2955,
+      "sha256": "61de90245fca1a134e54e2a611c0c5cb4f309babae267661fe30fe23f7c15183",
+      "status": "release_verified"
+    },
+    {
+      "path": "acceptance/2026-10-13/情报总览固定分区与天气趋势验收-2026-10-13-v1.md",
+      "version": "v1",
+      "document_date": "2026-10-13",
+      "archived_on": "2026-10-13",
+      "source_relative_path": "本轮真实浏览器验收与公开部署结果",
+      "bytes": 4323,
+      "sha256": "0e78941cdc06f08cbe1b89097e6935e2f07b3f0d6ca9e8b29f842337e72d6a57",
+      "status": "release_verified"
+    }
+  ]
+}
